@@ -5,7 +5,7 @@
 		<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' *.marin.dev *.appmarin.com http://appmarin.com; img-src *; style-src 'self' 'unsafe-inline'; connect-src *.marin.dev *.appmarin.com http://appmarin.com 'self';">
 		<meta name="format-detection" content="telephone=no" />
 		<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height" />
-		<title>Jorge Marín Expo detail</title>
+		<title>#JorgeMarin Hashtag</title>
 		<!-- Vendor styles -->		
 		<link rel="stylesheet" href="css/style.css">
 		<link href="css/font-awesome.min.css" rel="stylesheet">
@@ -15,7 +15,7 @@
 	</head>
 
 	<body>
-		<div id="single" data-role="main" class="single_container main clearfix">
+		<div id="single" data-role="main" class="feed_container main clearfix">
 		</div> <!-- END main -->
 	</body>
 	<!-- Load app's main scripts and styles -->
@@ -31,35 +31,14 @@
 		app.initialize();
 	</script>
 	<script type="text/javascript" src="cordova.js"></script>
-	<script id="expos_single_template" type="text/x-handlebars-template">
+	<script id="marin_hashtag_template" type="text/x-handlebars-template">
 		<section class="content expos_content">
 			<section class="head_info">
-				<span class="sprited expos"></span> <h2>Exposiciones Actuales</h2>
+				<span class="sprited hashtag"></span> <h2>#JorgeMarin</h2>
 			</section>
-			<article class="detail_expo clearfix">
-				<img src="{{thumb_url}}">
-				<h1 class=" title">{{post_title}}</h1>
-				<section class="event_detailed_info">
-					<section class="left_col">
-						<span class="sprited mono"></span>
-					</section>
-					<section class="right_col">
-						<p>{{event_location}}</p>
-						<p>{{event_date_start}} al {{event_date_end}}</p>
-					</section>
-				</section>
-				<ul class="single buttons clearfix">
-					<li><a id="agendarEvento" data-id="{{ID}}"><span class="sprited agenda"></span>agendar</a></li>
-					<li><a id="mapaEvento" href="geo: {{event_latlong}}"><span class="sprited map"></span>mapa</a></li>
-					<li><a id="masInfoEvento" data-id="{{ID}}"><span class="sprited moreinfo"></span>mas info</a></li>
-				</ul>
-				<section class="description">{{{post_content}}}</section>
-			</article>
 		</section>
 	</script>
 	<script type="text/javascript">
-		var GET = app.getUrlVars();
-		if(GET.expo_id && GET.expo_id != '')
-			app.get_expo_detail(GET.expo_id);
+			app.render_marin_hashtag();
 	</script>
 </html>
