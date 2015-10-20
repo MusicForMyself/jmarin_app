@@ -8,7 +8,7 @@ function requestHandlerAPI(){
 	/*** Attributes ***/
 	this.token = null;
 	this.version = "1.0";
-	this.app_build = "1.4.2";
+	this.app_build = "0.0.0";
 	this.device_model = (typeof device != 'undefined') ? device.model : 'not set';
 	this.device_platform = (typeof device != 'undefined') ? device.platform : 'not set';
 	this.device_platform_version = (typeof device != 'undefined') ? device.version : 'not set';
@@ -22,14 +22,14 @@ function requestHandlerAPI(){
 	var context = this;
 	window.sdk_app_context = null;
 	/* Production API URL */
-	window.api_base_url = "http://museografo.com/rest/v1/"; 
+	// window.api_base_url = "http://app.jorgemarin.com/rest/v1/"; 
 	/* Development local API URL */
-	// window.api_base_url = "http://museografo.dev/rest/v1/";
+	window.api_base_url = "http://marin.dev/rest/v1/";
 	
 	this.ls = window.localStorage;
 	/* Constructor */
 	this.construct = function(app_context){
-					console.log('Initialized rest API Museógrafo sdk v1.0');
+					console.log('Initialized rest API Jorge Marín sdk v1.0');
 					if(this.ls.getItem('request_token')) this.token = this.ls.getItem('request_token');
 					sdk_app_context = app_context;
 					/* For chaining purposes ::) */

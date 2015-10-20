@@ -47,7 +47,7 @@
 			}
 			
 			/* DEBUG Executing robots request first of all */
-			// console.log(JSON.stringify(apiRH.getRequest('robots', null)));
+			console.log(JSON.stringify(apiRH.getRequest('robots', null)));
 			/* Requesting passive token if no token is previously stored */
 			console.log(apiRH.request_token().get_request_token());
 			// window.location.assign('index.html');
@@ -55,7 +55,7 @@
 		registerPartials: function() {
 			var template = null;
 			/* Add files to be loaded here */
-			var filenames = ['header', 'comments', 'gallery_base'];
+			var filenames = ['header'];
 			filenames.forEach(function (filename) {
 				$.ajax({
 		            url : 'views/partials/' + filename + '.hbs',
@@ -94,13 +94,13 @@
 			* | |_| / ___ \ |_| | |_| | | |
 			*  \___/_/   \_\__,_|\__|_| |_|
 			*/                              
-			try{
-				OAuth.initialize('7O8IRe-xiPNc0JrOXSv3rc90RmU');
-			}
-			catch(err){
-				// app.toast("Oauth error ocurred");
-				console.log('OAuth initialize error: ' + err);
-			}
+			// try{
+			// 	OAuth.initialize('7O8IRe-xiPNc0JrOXSv3rc90RmU');
+			// }
+			// catch(err){
+			// 	// app.toast("Oauth error ocurred");
+			// 	console.log('OAuth initialize error: ' + err);
+			// }
 		},
 
 		// deviceready Event Handler
@@ -137,24 +137,22 @@
 				}
 				return true;
 		},
-		province_select_partial: function(){
-			return "\
-				<select id='user_province' name='user_province'>\
-					<option value='>Provincia/ciudad</option>\
-					{{#each .}}\
-						<option value='{{slug}}'>{{name}}</option>\
-					{{/each}}\
-				</select>";
+		render_header : function(){
+			var template = Handlebars.templates.header();
+			$('.main').prepend( template );
 		},
-		render_login_content : function(){
-
-			$.getJSON(api_base_url+'content/login/', function(response){
-				var source   = $("#login_screen_template").html();
-				var template = Handlebars.compile(source);
-				$('#index_container').html( template(response.data) );
-			}).fail(function(err){
-				console.log(JSON.stringify(err));
-			});
+		render_home_content : function(){
+			var data = {};
+			var GET = app.getUrlVars();
+			if(GET.lang && GET.lang != ''){
+				var langis = 'lang_'+GET.lang;
+				data = {langis : true};
+			}
+			var source   = $("#home_screen_template").html();
+			var template = Handlebars.compile(source);
+			$('#home_container').html( template(data) );
+			app.render_header();
+			return;
 		},
 		get_events_feed : function(offset, filter){
 
@@ -193,12 +191,6 @@
 				app.render_header();
 			});
 			
-		},
-		render_header : function(){
-			$.getJSON(api_base_url+user+'/notifications', function(response){
-				var template = Handlebars.templates.header(response);
-				$('.main').prepend( template ).trigger('create');
-			});
 		},
 		render_event_minigallery: function(event_id, limit){
 			
@@ -468,8 +460,11 @@
 	*                                                                         |___/ 
 	*/
 	jQuery(document).ready(function($) {
-
-		// $( ".fixed_header" ).toolbar({ position: "fixed" });
+		console.log('Initializing tests');
+		$('document').on('tap', '#menu_trigger',function(){
+			console.log('this');
+			$('#main_menu').slideToggle('fast');
+		});
 
 		/* Log In with a regular ol' account */
 		$('#login_form').submit(function(e){

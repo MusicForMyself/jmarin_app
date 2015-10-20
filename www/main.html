@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' *.marin.dev *.app.jorgemarin.com http://app.jorgemarin.com; img-src *; style-src 'self' 'unsafe-inline'; connect-src *.marin.dev *.app.jorgemarin.com http://app.jorgemarin.com 'self';">
+		<meta name="format-detection" content="telephone=no" />
+		<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height" />
+		<title>Jorge Marín</title>
+		<!-- Vendor styles -->		
+		<link rel="stylesheet" href="css/style.css">
+		<link href="css/font-awesome.min.css" rel="stylesheet">
+		<link rel="icon" href="images/favicon.ico" sizes="32x32">
+		<!-- Vendor libraries and plugins -->
+		<script src="js/jquery1.11.3.min.js"></script>
+	</head>
+
+	<body>
+		<div id="home_container" data-role="main" class="main clearfix">
+		</div> <!-- END main -->
+	</body>
+	<!-- Load app's main scripts and styles -->
+	<!-- Templates -->
+	<script src="js/handlebars-runtime.js"></script>
+	<script src="views/partials/header.js"></script>
+	<script src="js/api-sdk-1.0.js"></script>
+	<script src="js/main.js"></script>
+	<script src="js/plugins.min.js"></script>
+	<script type="text/javascript">
+		/* Initialize app object and perform initial login check */
+		window.is_home = true;
+		app.initialize();
+	</script>
+	<script type="text/javascript" src="cordova.js"></script>
+	<script id="home_screen_template" type="text/x-handlebars-template">
+		
+	<section class="home_content content clearfix">
+		{{#lang_en}}
+			welcome
+		{{/lang_en}}
+		{{#lang_es}}
+			<img src="images/full_bg.jpg" class="full_bg">
+		{{/lang_es}}
+		{{#unless nolang}}
+			<h1 class="logo sprited"><span class="handstand sprited"></span></h1>
+			<ul class="lang_select">
+				<li><a href="main.html?lang=en">ENG</a></li>
+				<li><span class="click sprited"></span></li>
+				<li><a href="home.html?lang=es">ESP</a></li>
+			</ul>
+		{{/unless}}
+	</section>
+
+	</script>
+	<script type="text/javascript">
+		app.render_home_content();
+	</script>
+</html>
