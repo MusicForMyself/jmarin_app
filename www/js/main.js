@@ -55,7 +55,7 @@
 		registerPartials: function() {
 			var template = null;
 			/* Add files to be loaded here */
-			var filenames = ['header'];
+			var filenames = ['header', 'footer'];
 			filenames.forEach(function (filename) {
 				$.ajax({
 		            url : 'views/partials/' + filename + '.hbs',
@@ -141,12 +141,18 @@
 			var template = Handlebars.templates.header();
 			$('.main').prepend( template );
 		},
+		render_footer : function(){
+			var template = Handlebars.templates.footer();
+			$('.main').append( template );
+		},
 		render_home_content : function(){
 			var data = {};
+			data['nolang'] = true;
 			var GET = app.getUrlVars();
 			if(GET.lang && GET.lang != ''){
 				var langis = 'lang_'+GET.lang;
-				data = {langis : true};
+				data[langis] = true;
+				data['nolang'] = false;
 			}
 			var source   = $("#home_screen_template").html();
 			var template = Handlebars.compile(source);
@@ -154,17 +160,32 @@
 			app.render_header();
 			return;
 		},
-		get_events_feed : function(offset, filter){
+		render_semblanza : function(offset, filter){
 
-			$.getJSON(api_base_url+user+'/events/feed/'+offset+'/'+filter , function(response){
-				app.registerTemplate('feed');
-				var template = Handlebars.templates.feed(response);
-				$('.feed_container').html( template );
-				app.set_selected_filter(filter);
+			$.getJSON(api_base_url+'commons/semblanza/' , function(response){
+				console.log(response);
+				var source   = $("#semblanza_screen_template").html();
+				var template = Handlebars.compile(source);
+				$('.feed_container').html( template(response) );
 			}).fail(function(err){
 				console.log(err);
 			}).done(function(err){
 				app.render_header();
+				app.render_footer();
+			});
+		},
+		get_expos_feed : function(offset){
+
+			$.getJSON(api_base_url+'expos/feed/'+offset , function(response){
+				console.log(response);
+				var source   = $("#expos_feed_template").html();
+				var template = Handlebars.compile(source);
+				$('.feed_container').html( template(response) );
+			}).fail(function(err){
+				console.log(err);
+			}).done(function(err){
+				app.render_header();
+				app.render_footer();
 			});
 		},
 		get_user_timeline : function(offset){
@@ -460,10 +481,15 @@
 	*                                                                         |___/ 
 	*/
 	jQuery(document).ready(function($) {
-		console.log('Initializing tests');
-		$('document').on('tap', '#menu_trigger',function(){
-			console.log('this');
-			$('#main_menu').slideToggle('fast');
+
+		$('body').on('click', '#menu_trigger',function(){
+			if(!$(this).hasClass('open')){
+				$(this).addClass('open');
+				$('#main_menu').slideToggle('fast');
+				return;
+			}
+			$(this).removeClass('open');
+			$('#main_menu').fadeOut('fast');
 		});
 
 		/* Log In with a regular ol' account */

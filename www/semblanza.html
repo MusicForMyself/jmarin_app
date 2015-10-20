@@ -5,7 +5,7 @@
 		<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' *.marin.dev *.app.jorgemarin.com http://app.jorgemarin.com; img-src *; style-src 'self' 'unsafe-inline'; connect-src *.marin.dev *.app.jorgemarin.com http://app.jorgemarin.com 'self';">
 		<meta name="format-detection" content="telephone=no" />
 		<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height" />
-		<title>Jorge Marín</title>
+		<title>Jorge Marín, Semblanza</title>
 		<!-- Vendor styles -->		
 		<link rel="stylesheet" href="css/style.css">
 		<link href="css/font-awesome.min.css" rel="stylesheet">
@@ -15,7 +15,7 @@
 	</head>
 
 	<body>
-		<div id="home_container" data-role="main" class="main clearfix">
+		<div id="semblanca_container" data-role="main" class="feed_container main clearfix">
 		</div> <!-- END main -->
 	</body>
 	<!-- Load app's main scripts and styles -->
@@ -31,27 +31,22 @@
 		app.initialize();
 	</script>
 	<script type="text/javascript" src="cordova.js"></script>
-	<script id="home_screen_template" type="text/x-handlebars-template">
+	<script id="semblanza_screen_template" type="text/x-handlebars-template">
 		
-	<section class="home_content content clearfix">
-		{{#if lang_en}}
-			<img src="images/full_bg.jpg" class="full_bg">
-		{{/if}}
-		{{#if lang_es}}
-			<img src="images/full_bg.jpg" class="full_bg">
-		{{/if}}
-		{{#if nolang}}
-			<h1 class="logo sprited"><span class="handstand sprited"></span></h1>
-			<ul class="lang_select">
-				<li><a href="main.html?lang=en">ENG</a></li>
-				<li><span class="click sprited"></span></li>
-				<li><a href="main.html?lang=es">ESP</a></li>
-			</ul>
-		{{/if}}
-	</section>
+		<section class="semblanza_container content clearfix">
+			<section class="head_info">
+				<span class="sprited semblanza"></span> <h2>Semblanza</h2>
+			</section>
+			<img src="{{artist_bio_photo}}">
+			<h1>{{artist_name}}</h1>
+			<h3>{{artist_origin}}</h3>
+			<article class="bioContent">
+			{{{artist_bio}}}
+			</article>
+		</section>
 
 	</script>
 	<script type="text/javascript">
-		app.render_home_content();
+		app.render_semblanza();
 	</script>
 </html>
