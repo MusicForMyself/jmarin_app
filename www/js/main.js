@@ -177,9 +177,9 @@
 		},
 		render_marin_hashtag : function(offset, filter){
 
-			$.getJSON(api_base_url+'commons/semblanza/' , function(response){
+			$.getJSON(api_base_url+'content/hashtag/' , function(response){
 				console.log(response);
-				var source   = $("#semblanza_screen_template").html();
+				var source   = $("#marin_hashtag_template").html();
 				var template = Handlebars.compile(source);
 				$('.feed_container').html( template(response) );
 			}).fail(function(err){
