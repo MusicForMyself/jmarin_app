@@ -1,0 +1,150 @@
+/*
+ * Style: Jorge Marin Cordova app
+ * Author: John Falcon
+ * URL: johnfalcon.me
+ */
+
+@font-face {
+    font-family: 'SerifaStd-Light';
+    src: url('../fonts/SerifaStd-Light.eot');
+    src: local('☺'), url('../fonts/SerifaStd-Light.woff') format('woff'), url('../fonts/SerifaStd-Light.ttf') format('truetype'), url('../fonts/SerifaStd-Light.svg') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Futura-Medium';
+    src: url('../fonts/Futura-Medium.eot');
+    src: local('☺'), url('../fonts/Futura-Medium.woff') format('woff'), url('../fonts/Futura-Medium.ttf') format('truetype'), url('../fonts/Futura-Medium.svg') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body { font-size: 62.5%; margin: 0; padding: 0; font-family: "Futura-Medium"; }
+h1 { font-size: 2.4em; } /* =24px */
+/* =14px */
+li { font-size: 1.4em; } /* =14px? */
+
+/*GENERAL*/
+.clearfix:after {
+    content: ".";
+    display: block;
+    clear: both;
+    visibility: hidden;
+    line-height: 0;
+    height: 0;
+}
+ 
+.clearfix {
+    display: inline-block;
+}
+ 
+html[xmlns] .clearfix {
+    display: block;
+}
+ 
+* html .clearfix {
+    height: 1%;
+} 
+html * {
+    box-sizing: border-box;
+}
+
+.rounded {
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+}
+li>a{color: inherit; text-decoration: none;}
+
+.logo{width: 64%;height: 20px;background-position: 0px -121px;padding: 0;display: inline-block!important;vertical-align: middle;margin: 0 4%;min-width: 230px;}
+.sprited{ display: block; background-repeat: no-repeat; background-image: url('../images/sprite.png');}
+
+/** Container **/
+.main{width: 100%;height: auto;;}
+
+/** Header **/
+.mainHeader{ display: block; background-color: #000; padding: 0.1px; position: relative;}
+.menu_trigger{ width: 24px; height: 24px; background-position: -27px -87px; margin: 2rem 1.2rem; display: inline-block; vertical-align: middle; cursor: pointer;}
+
+/** Main Menu **/
+.main_menu{ display: block; display: none; bottom: -10rem; background-color: #000; color: #FFF; list-style: none; margin: 0; padding: 0 1.2rem; width: 100%; z-index: 999; position: absolute;}
+.main_menu li{ padding: 1rem 0; text-transform: uppercase; letter-spacing: 2px; border-top: 1px solid rgba(255, 255, 255, 0.5);}
+.main_menu li>a>span{ width: 25px; height: 25px; display: inline-block; vertical-align: middle; margin: 0 0.25rem 0 0;}
+.sprited.semblanza{ background-position: -1px -34px;;}
+.sprited.expos{ background-position: -1px -60px;}
+.sprited.hashtag{ background-position: -1px -85px;}
+
+/** Home language select **/
+.full_bg{ display: block; height: 86vh; width: auto;}
+.content{ min-height: 87vh; width: 100%; height: auto;}
+.home_content{ min-height: 87vh; background-color: #000; color: #FFF;}
+    .home_content .logo{ position: relative; margin: 70% auto 0 auto; display: block!important;}
+    .handstand{ display: block; position: absolute; width: 32px; height: 109px; background-position: -129px -12px; left: 41.6%; top: -90px;}
+.lang_select{ list-style: none; width: 118px; margin: 28% auto; padding: 0;}
+.lang_select li{ display: inline-block; margin: 0; vertical-align: middle;}
+.click.sprited{ background-position: 0px -11px; width: 20px; height: 23px;}
+.lang_select li>a{letter-spacing: 3px;padding: 1rem 0.5rem;}
+
+/*** Feed ***/
+.expos_content{
+    background-color: #000;
+    padding: 0 0 2rem 0;}
+    .each_expo a{display: block;}
+    .each_expo:first-of-type{margin-top: 2rem;}
+    .each_expo{
+    margin: auto;
+    display: block;
+    width: 280px;}
+.rounded.photo{
+    width: 200px;
+    height: 200px;
+    display: block;
+    overflow: hidden;
+    margin: -1rem 0 0 -3rem;
+    float: right;
+    position: relative;}
+.rounded.title{
+    width: 120px;
+    height: 120px;
+    display: block;
+    float: left;
+    border: 2px solid #FFF;
+    background: #000;
+    color: #FFF;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 100;
+    padding: 2.8rem 0 0 0.75rem;
+    line-height: 1.1rem;
+    z-index: 10;
+    position: relative;}
+
+/*** Single ***/
+.single_container{}
+.detail_expo {
+    background-color: #FFF;}
+.detail_expo h1{margin: 0.5rem 1rem;text-transform: uppercase;letter-spacing: 3px;font-size: 1.1rem;}
+.detail_expo >img{
+    width: 100%;
+    height: auto;
+    display: block;}
+.detail_expo .location{}
+.detail_expo .description{font-family: "SerifaStd-Light"; font-size: 0.85rem;}
+
+/*** Semblanza ***/
+.semblanza_container{}
+.head_info {background-color: #000;}
+.head_info h2{width: 80%;display: inline-block;vertical-align: middle;margin: 0 0 1.4rem 0;padding: 0 1rem;text-transform: uppercase;letter-spacing: 2.2px;color: #FFF;font-weight: 100;}
+.head_info .semblanza,
+.head_info .expos{vertical-align: middle;width: 25px;height: 25px;display: inline-block;margin: 0 1rem 1rem 1rem;}
+.semblanza_container h1{margin: 0.5rem 1rem;text-transform: uppercase;letter-spacing: 3px;font-size: 1.1rem;}
+.semblanza_container h3{margin: 0.5rem 1rem;letter-spacing: 2px;font-size: 0.85rem;color: #929396;}
+.semblanza_container .bioContent{ line-height: 1rem; font-size: 0.85rem; letter-spacing: 0.6px; font-family: "SerifaStd-Light"; padding: 0 1rem;}
+.semblanza_container>img{width: 100%; height: auto;}
+.semblanza_container p{}
+
+.dafooter{ background-color: #000; width: 100%; padding: 1rem 0;}
+.dafooter .logo{
+    margin: 0 auto;
+    display: block!important;}

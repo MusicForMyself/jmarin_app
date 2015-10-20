@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' *.marin.dev *.appmarin.com http://appmarin.com; img-src *; style-src 'self' 'unsafe-inline'; connect-src *.marin.dev *.appmarin.com http://appmarin.com 'self';">
+		<meta name="format-detection" content="telephone=no" />
+		<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height" />
+		<title>#JorgeMarin Hashtag</title>
+		<!-- Vendor styles -->		
+		<link rel="stylesheet" href="css/style.css">
+		<link href="css/font-awesome.min.css" rel="stylesheet">
+		<link rel="icon" href="images/favicon.ico" sizes="32x32">
+		<!-- Vendor libraries and plugins -->
+		<script src="js/jquery1.11.3.min.js"></script>
+	</head>
+
+	<body>
+		<div id="single" data-role="main" class="single_container main clearfix">
+		</div> <!-- END main -->
+	</body>
+	<!-- Load app's main scripts and styles -->
+	<!-- Templates -->
+	<script src="js/handlebars-runtime.js"></script>
+	<script src="views/partials/header.js"></script>
+	<script src="js/api-sdk-1.0.js"></script>
+	<script src="js/main.js"></script>
+	<script src="js/plugins.min.js"></script>
+	<script type="text/javascript">
+		/* Initialize app object and perform initial login check */
+		window.is_home = true;
+		app.initialize();
+	</script>
+	<script type="text/javascript" src="cordova.js"></script>
+	<script id="expos_single_template" type="text/x-handlebars-template">
+		<section class="content expos_content">
+			
+		</section>
+	</script>
+	<script type="text/javascript">
+			app.render_marin_hashtag();
+	</script>
+</html>
