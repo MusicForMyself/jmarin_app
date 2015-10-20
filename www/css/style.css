@@ -80,8 +80,8 @@ li>a{color: inherit; text-decoration: none;}
 /** Home language select **/
 .full_bg{ display: block; height: 86vh; width: auto;}
 .content{ min-height: 87vh; width: 100%; height: auto;}
-.home_content{ min-height: 87vh; background-color: #000; color: #FFF;}
-    .home_content .logo{ position: relative; margin: 70% auto 0 auto; display: block!important;}
+.home_content{ min-height: 100vh; background-color: #000; color: #FFF;}
+    .home_content .logo{ position: relative; margin: 80% auto 0 auto; display: block!important;}
     .handstand{ display: block; position: absolute; width: 32px; height: 109px; background-position: -129px -12px; left: 41.6%; top: -90px;}
 .lang_select{ list-style: none; width: 118px; margin: 28% auto; padding: 0;}
 .lang_select li{ display: inline-block; margin: 0; vertical-align: middle;}
