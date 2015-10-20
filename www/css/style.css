@@ -127,13 +127,44 @@ li>a{color: inherit; text-decoration: none;}
 .single_container{}
 .detail_expo {
     background-color: #FFF;}
-.detail_expo h1{margin: 0.5rem 1rem;text-transform: uppercase;letter-spacing: 3px;font-size: 1.1rem;}
+.detail_expo h1{margin: 1rem 0 1rem 1.2rem;text-transform: uppercase;letter-spacing: 3px;font-size: 1.1rem;}
 .detail_expo >img{
     width: 100%;
     height: auto;
     display: block;}
 .detail_expo .location{}
-.detail_expo .description{font-family: "SerifaStd-Light"; font-size: 0.85rem;}
+.detail_expo .description{font-family: "SerifaStd-Light"; font-size: 0.9rem; padding: 1.2rem; letter-spacing: 0.6px; line-height: 1rem;}
+
+.event_detailed_info{ border-style: solid; border-color: rgba(0, 0, 0, 0.28); border-width: 1px 0 1px 0; width: 89%; margin: 0 1.2rem;}
+.event_detailed_info p:first-of-type{border-bottom: 1px solid rgba(0, 0, 0, 0.28);;}
+.event_detailed_info p{
+    font-size: 1.1rem;
+    letter-spacing: 1.2px;
+    margin: 0;
+    line-height: 1rem;
+    padding: 0.86rem 0.5rem;
+    width: 100%;
+    display: block;}
+.event_detailed_info .right_col{ display: inline-block; vertical-align: top; width: 89%;}
+.event_detailed_info .left_col{ display: inline-block; vertical-align: top; border-right: 1px solid rgba(0, 0, 0, 0.28);}
+.sprited.mono{width: 25px; height: 24px; background-position: -50px -61px; margin: 2rem 0.2rem;}
+.single.buttons{ list-style: none; padding: 0; float: right; margin: 0 1.2rem 1rem 1.2rem;}
+.single.buttons li{
+    width: 96px;
+    height: auto;
+    float: left;
+    border-right: 1px solid #FFF;
+    background-color: #000;
+    color: #FFF;
+    letter-spacing: 1.5px;}
+.single.buttons a>.sprited{ width: 25px; height: 24px; display: inline-block; vertical-align: middle; margin: 0 0.2rem;}
+    .sprited.agenda{background-position: -26px -12px; }
+    .sprited.map{background-position: -26px -36px; }
+    .sprited.moreinfo{background-position: -26px -60px; }
+.single.buttons li:last-of-type{border-right: 0;}
+.single.buttons li a{
+    display: block;
+    padding: 0.5rem 0 0.5rem 0.2rem;}
 
 /*** Semblanza ***/
 .semblanza_container{}

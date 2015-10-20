@@ -39,7 +39,20 @@
 			<article class="detail_expo clearfix">
 				<img src="{{thumb_url}}">
 				<h1 class=" title">{{post_title}}</h1>
-				<h4 class="location">{{post_title}}</h4>
+				<section class="event_detailed_info">
+					<section class="left_col">
+						<span class="sprited mono"></span>
+					</section>
+					<section class="right_col">
+						<p>{{event_location}}</p>
+						<p>{{event_date_start}} al {{event_date_end}}</p>
+					</section>
+				</section>
+				<ul class="single buttons clearfix">
+					<li><a id="agendarEvento" data-id="{{ID}}"><span class="sprited agenda"></span>agendar</a></li>
+					<li><a id="mapaEvento" data-id="{{ID}}"><span class="sprited map"></span>mapa</a></li>
+					<li><a id="masInfoEvento" data-id="{{ID}}"><span class="sprited moreinfo"></span>mas info</a></li>
+				</ul>
 				<section class="description">{{{post_content}}}</section>
 			</article>
 		</section>
