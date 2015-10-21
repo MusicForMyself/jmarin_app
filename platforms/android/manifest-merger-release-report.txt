@@ -52,13 +52,15 @@ ADDED from AndroidManifest.xml:7:5
 activity#com.jmarin.app.MainActivity
 ADDED from AndroidManifest.xml:8:9
 	android:windowSoftInputMode
-		ADDED from AndroidManifest.xml:8:248
+		ADDED from AndroidManifest.xml:8:285
+	android:screenOrientation
+		ADDED from AndroidManifest.xml:8:194
 	android:label
 		ADDED from AndroidManifest.xml:8:97
 	android:configChanges
 		ADDED from AndroidManifest.xml:8:19
 	android:theme
-		ADDED from AndroidManifest.xml:8:194
+		ADDED from AndroidManifest.xml:8:231
 	android:name
 		ADDED from AndroidManifest.xml:8:166
 	android:launchMode

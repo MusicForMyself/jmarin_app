@@ -24,13 +24,14 @@
         <param name="onload" value="true" />
     </feature>
     <preference name="AndroidPersistentFileLocation" value="Internal" />
+    <allow-intent href="http://museografo.com" />
     <allow-intent href="market:*" />
-    <name>Marin</name>
+    <name>Jorge Marin</name>
     <description>
-        A sample Apache Cordova application that responds to the deviceready event.
+        App para seguir las exposiciones del artista mexicano Jorge Marín
     </description>
-    <author email="dev@cordova.apache.org" href="http://cordova.io">
-        Apache Cordova Team
+    <author email="john@pixel-muffin.com" href="http://johnfalcon.me">
+        John Falcon
     </author>
     <content src="index.html" />
     <access origin="*" />
@@ -40,4 +41,8 @@
     <allow-intent href="sms:*" />
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
+    <preference name="Orientation" value="portrait" />
+    <preference name="SplashScreen" value="splash" />
+    <preference name="SplashScreenDelay" value="10000" />
+    <preference name="SplashMaintainAspectRatio" value="true" />
 </widget>
