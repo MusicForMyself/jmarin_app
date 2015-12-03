@@ -308,15 +308,11 @@
 		});
 
 		$('body').on('click', '#uploadFromGallery',function(){
-			var evento_id = $(this).data('id');
-			console.log(evento_id);
-			app.schedule_expo(evento_id);
+			app.get_file_from_device('hashtag', 'gallery');
 		});
 
 		$('body').on('click', '#uploadFromCamera',function(){
-			var evento_id = $(this).data('id');
-			console.log(evento_id);
-			app.schedule_expo(evento_id);
+			app.get_file_from_device('hashtag', 'camera');
 		});
 
 	});

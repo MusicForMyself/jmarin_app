@@ -415,13 +415,13 @@ function requestHandlerAPI(){
 
 									var params = {};
 										params.client = "app";
+										params.comment = "this is not a comment";
 
 									this.transfer_options.params = params;
 
 									var ft = new FileTransfer();
 									var ls = window.localStorage;
-									var event_id = ls.getItem('museo_last_selected_event');
-									ft.upload(fileURL, encodeURI(api_base_url+"transfers/"+user+"/event_upload/"+event_id+"/"), context.transfer_win, context.transfer_fail, this.transfer_options);
+									ft.upload( fileURL, encodeURI(api_base_url+"transfers/user_upload/"), context.transfer_win, context.transfer_fail, this.transfer_options );
 								};
 		/*
 		 * Initialize Profile File transfer
@@ -465,17 +465,19 @@ function requestHandlerAPI(){
 
 			this.photoDestinationType = navigator.camera.DestinationType;
 			var sourcetype =  navigator.camera.PictureSourceType.PHOTOLIBRARY;
-			if(source == "camera") sourcetype =  navigator.camera.PictureSourceType.CAMERA;
-			if(destination == 'profile')
-				navigator.camera.getPicture(context.profileselect_win, context.fileselect_fail, { quality: 50,
-					destinationType: this.photoDestinationType.FILE_URI,
-					sourceType: sourcetype,
-					mediaType: navigator.camera.MediaType.ALLMEDIA  });
-			if(destination == 'event')
+				sourcetype =  (source == "camera") ? navigator.camera.PictureSourceType.CAMERA : sourcetype;
+			// if(destination == 'profile')
+			// 	navigator.camera.getPicture(context.profileselect_win, context.fileselect_fail, { quality: 50,
+			// 		destinationType: this.photoDestinationType.FILE_URI,
+			// 		sourceType: sourcetype,
+			// 		mediaType: navigator.camera.MediaType.ALLMEDIA  });
+			if(destination == 'hashtag')
 				navigator.camera.getPicture(context.fileselect_win, context.fileselect_fail, { quality: 50,
 						destinationType: this.photoDestinationType.FILE_URI,
 						sourceType: sourcetype,
-						mediaType: navigator.camera.MediaType.ALLMEDIA  });
+						mediaType: navigator.camera.MediaType.ALLMEDIA,
+						targetWidth: 900,
+  						targetHeight: 900  });
 			return;
 		};
 
