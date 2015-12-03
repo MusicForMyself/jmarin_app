@@ -294,7 +294,7 @@
 		$('body').on('click', '#menu_trigger',function(){
 			if(!$(this).hasClass('open')){
 				$(this).addClass('open');
-				$('#main_menu').slideToggle('fast');
+				$('#main_menu').fadeIn('fast');
 				return;
 			}
 			$(this).removeClass('open');
