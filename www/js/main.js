@@ -133,7 +133,7 @@
 				if (obj.length === 0)  return true;
 
 				for (var key in obj) {
-						if (hasOwnProperty.call(obj, key)) return false;
+					if (hasOwnProperty.call(obj, key)) return false;
 				}
 				return true;
 		},
@@ -189,6 +189,20 @@
 				app.render_footer();
 			});
 		},
+		render_upload_fromgallery : function(){
+
+			$.getJSON(api_base_url+'content/hashtag/' , function(response){
+				console.log(response);
+				var source   = $("#marin_hashtag_template").html();
+				var template = Handlebars.compile(source);
+				$('.feed_container').html( template(response) );
+			}).fail(function(err){
+				console.log(err);
+			}).done(function(err){
+				app.render_header();
+				app.render_footer();
+			});
+		},
 		get_expos_feed : function(offset){
 
 			$.getJSON(api_base_url+'expos/feed/'+offset , function(response){
@@ -216,6 +230,11 @@
 				app.render_header();
 				app.render_footer();
 			});
+		},
+		schedule_expo : function(expo_id){
+			
+			var response = apiRH.makeRequest('events/schedule/', {event_id: expo_id});
+			console.log(response);
 		},
 		get_search_results: function(search_term, offset){
 			$.getJSON( api_base_url+'user/'+user+'/search/'+search_term+'/'+offset , function(response){
@@ -280,6 +299,12 @@
 			}
 			$(this).removeClass('open');
 			$('#main_menu').fadeOut('fast');
+		});
+		
+		$('body').on('click', '#agendarEvento',function(){
+			var evento_id = $(this).data('id');
+			console.log(evento_id);
+			app.schedule_expo(evento_id);
 		});
 
 		

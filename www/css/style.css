@@ -72,10 +72,13 @@ li>a{color: inherit; text-decoration: none;}
 .main_menu li>a>span,
 .sprited.semblanza,
 .sprited.expos,
+.sprited.gallery,
 .sprited.hashtag{ width: 25px; height: 25px; display: inline-block; vertical-align: middle; margin: 0 0.25rem 0 0;}
 .sprited.semblanza{ background-position: -1px -34px;;}
 .sprited.expos{ background-position: -1px -60px;}
-.sprited.hashtag{ background-position: -1px -85px;}
+.sprited.hashtag{ background-position: -1px -84px;}
+.sprited.inv{-webkit-filter: invert(100%); filter: invert(100%);}
+.squared_button .sprited
 
 /** Home language select **/
 .full_bg{ display: block; height: 86vh; width: auto;}
@@ -89,82 +92,38 @@ li>a{color: inherit; text-decoration: none;}
 .lang_select li>a{letter-spacing: 3px;padding: 1rem 0.5rem;}
 
 /*** Feed ***/
-.expos_content{
-    background-color: #000;
-    padding: 0 0 2rem 0;}
+.expos_content{ background-color: #000; padding: 0 0 2rem 0;}
     .each_expo a{display: block;}
     .each_expo:first-of-type{margin-top: 2rem;}
-    .each_expo{
-    margin: auto;
-    display: block;
-    width: 280px;}
-.rounded.photo{
-    width: 200px;
-    height: 200px;
-    display: block;
-    overflow: hidden;
-    margin: -1rem 0 0 -3rem;
-    float: right;
-    position: relative;}
-.rounded.title{
-    width: 120px;
-    height: 120px;
-    display: block;
-    float: left;
-    border: 2px solid #FFF;
-    background: #000;
-    color: #FFF;
-    font-size: 0.85rem;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    font-weight: 100;
-    padding: 2.8rem 0 0 0.75rem;
-    line-height: 1.1rem;
-    z-index: 10;
-    position: relative;}
+    .each_expo{ margin: auto; display: block; width: 300px;}
+.rounded.photo{ width: 200px; height: 200px; display: block; overflow: hidden; margin: -1rem 0 0 -3rem; float: right; position: relative;}
+.each_expo:nth-of-type(2n) .rounded.photo{float: left;margin: -1rem -3rem 0 0rem;}
+.rounded.title{ width: 120px; height: 120px; display: block; float: left; border: 2px solid #FFF; background: #000; color: #FFF; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 2px; font-weight: 100; padding: 2.8rem 0 0 0.75rem; line-height: 1.1rem; z-index: 10; position: relative;}
+.each_expo:nth-of-type(2n) .rounded.title{float: right;}
 
 /*** Single ***/
 .single_container{}
-.detail_expo {
-    background-color: #FFF;}
+.detail_expo { background-color: #FFF;}
 .detail_expo h1{margin: 1rem 0 1rem 1.2rem;text-transform: uppercase;letter-spacing: 3px;font-size: 1.1rem;}
-.detail_expo >img{
-    width: 100%;
-    height: auto;
-    display: block;}
+.detail_expo >img{ width: 100%; height: auto; display: block;}
 .detail_expo .location{}
 .detail_expo .description{font-family: "SerifaStd-Light"; font-size: 0.9rem; padding: 1.2rem; letter-spacing: 0.6px; line-height: 1rem;}
 
 .event_detailed_info{ border-style: solid; border-color: rgba(0, 0, 0, 0.28); border-width: 1px 0 1px 0; width: 89%; margin: 0 1.2rem;}
 .event_detailed_info p:first-of-type{border-bottom: 1px solid rgba(0, 0, 0, 0.28);;}
-.event_detailed_info p{
-    font-size: 1.1rem;
-    letter-spacing: 1.2px;
-    margin: 0;
-    line-height: 1rem;
-    padding: 0.86rem 0.5rem;
-    width: 100%;
-    display: block;}
+.event_detailed_info p{ font-size: 1.1rem; letter-spacing: 1.2px; margin: 0; line-height: 1rem; padding: 0.86rem 0.5rem; width: 100%; display: block;}
 .event_detailed_info .right_col{ display: inline-block; vertical-align: top; width: 89%;}
 .event_detailed_info .left_col{ display: inline-block; vertical-align: top; border-right: 1px solid rgba(0, 0, 0, 0.28);}
 .sprited.mono{width: 25px; height: 24px; background-position: -50px -61px; margin: 2rem 0.2rem;}
 .single.buttons{ list-style: none; padding: 0; float: right; margin: 0 1.2rem 1rem 1.2rem;}
-.single.buttons li{
-    width: 96px;
-    height: auto;
-    float: left;
-    border-right: 1px solid #FFF;
-    background-color: #000;
-    color: #FFF;
-    letter-spacing: 1.5px;}
+.single.buttons li{ width: 96px; height: auto; float: left; border-right: 1px solid #FFF; background-color: #000; color: #FFF; letter-spacing: 1.5px;}
 .single.buttons a>.sprited{ width: 25px; height: 24px; display: inline-block; vertical-align: middle; margin: 0 0.2rem;}
     .sprited.agenda{background-position: -26px -12px; }
     .sprited.map{background-position: -26px -36px; }
     .sprited.moreinfo{background-position: -26px -60px; }
+    .sprited.gallery{background-position: -49px -12px; }
 .single.buttons li:last-of-type{border-right: 0;}
-.single.buttons li a{
-    display: block;
-    padding: 0.5rem 0 0.5rem 0.2rem;}
+.single.buttons li a{ display: block; padding: 0.5rem 0 0.5rem 0.2rem;}
 
 /*** Semblanza ***/
 .semblanza_container{}
@@ -172,14 +131,21 @@ li>a{color: inherit; text-decoration: none;}
 .head_info h2{width: 80%;display: inline-block;vertical-align: middle;margin: 0 0 0.4rem 0;padding: 0 1rem;text-transform: uppercase;letter-spacing: 2.2px;color: #FFF;font-weight: 100;}
 .head_info .sprited{margin: 0 0.5rem 0 1.2rem;}
 .head_info .semblanza,
-.head_info .expos{vertical-align: middle;width: 25px;height: 25px;display: inline-block;margin: 0 1rem 1rem 1rem;}
-.semblanza_container h1{margin: 0.5rem 1rem;text-transform: uppercase;letter-spacing: 3px;font-size: 1.1rem;}
-.semblanza_container h3{margin: 0.5rem 1rem;letter-spacing: 2px;font-size: 0.85rem;color: #929396;}
-.semblanza_container .bioContent{ line-height: 1rem; font-size: 0.85rem; letter-spacing: 0.6px; font-family: "SerifaStd-Light"; padding: 0 1rem;}
+.head_info .expos{ vertical-align: middle; width: 25px; height: 25px; display: inline-block; margin: 0 1rem 1rem 1rem; }
+.semblanza_container h1{margin: 0.5rem 1rem; text-transform: uppercase; letter-spacing: 3px; font-size: 1.1rem; }
+.semblanza_container h3{margin: 0.5rem 1rem; letter-spacing: 2px; font-size: 0.85rem; color: #929396; }
+.semblanza_container .bioContent{ line-height: 1rem; font-size: 0.85rem; letter-spacing: 0.6px; font-family: "SerifaStd-Light"; padding: 0 1rem; }
 .semblanza_container>img{width: 100%; height: auto;}
 .semblanza_container p{}
 
 .dafooter{ background-color: #000; width: 100%; padding: 1rem 0;}
-.dafooter .logo{
-    margin: 0 auto;
-    display: block!important;}
+.dafooter .logo{ margin: 0 auto; display: block!important;}
+
+/*** Hashtag JorgeMarin ***/
+.bottom_buttons{ display: block; clear: both; width: 100%; float: right; border-top: 1px solid #646466;}
+.sprited_hashtag{  }
+.squared_button{ padding: 0.25rem; background: #FFF; width: 120px; height: auto; text-decoration: none; font-size: 1rem; letter-spacing: 1px; color: #000; line-height: 1rem; float: right; }
+.squared_button:last-of-type{ margin-right: 0.25rem; }
+.squared_button .sprited{ display: inline-block;}
+
+.thumb_container{ min-height: 74vh; }
