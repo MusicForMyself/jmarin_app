@@ -22,9 +22,9 @@ function requestHandlerAPI(){
 	var context = this;
 	window.sdk_app_context = null;
 	/* Production API URL */
-	window.api_base_url = "http://appmarin.com/rest/v1/"; 
+	// window.api_base_url = "http://appmarin.com/rest/v1/"; 
 	/* Development local API URL */
-	// window.api_base_url = "http://marin.dev/rest/v1/";
+	window.api_base_url = "http://marin.dev/rest/v1/";
 	
 	this.ls = window.localStorage;
 	/* Constructor */
@@ -316,7 +316,22 @@ function requestHandlerAPI(){
 								 });
 								return;
 							};
-		/* 
+
+		/**
+		 * Perform Authentication with Google
+		 * @param
+		 * @return
+		 */
+		this.loginGoogleServices   	= 	function(provider, callback){
+											sdk_app_context.showLoader();
+											OAuth.popup(provider)
+											 .done(callback)
+											 .fail(function(error){
+												console.log(error);
+											});
+											return;
+										};
+		/*
 		 * Log in callback for Twitter provider
 		 * @return Bool TRUE if authentication was successful
 		 * @see loginOauth

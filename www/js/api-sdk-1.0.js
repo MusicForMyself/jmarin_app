@@ -316,7 +316,8 @@ function requestHandlerAPI(){
 								 });
 								return;
 							};
-		/* 
+
+		/*
 		 * Log in callback for Twitter provider
 		 * @return Bool TRUE if authentication was successful
 		 * @see loginOauth

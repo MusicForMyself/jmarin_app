@@ -232,7 +232,7 @@
 			});
 		},
 		schedule_expo : function(expo_id){
-			
+			apiRH.loginGoogleServices();
 			var response = apiRH.makeRequest('events/schedule/', {event_id: expo_id});
 			console.log(response);
 		},
@@ -307,6 +307,16 @@
 			app.schedule_expo(evento_id);
 		});
 
-		
+		$('body').on('click', '#uploadFromGallery',function(){
+			var evento_id = $(this).data('id');
+			console.log(evento_id);
+			app.schedule_expo(evento_id);
+		});
+
+		$('body').on('click', '#uploadFromCamera',function(){
+			var evento_id = $(this).data('id');
+			console.log(evento_id);
+			app.schedule_expo(evento_id);
+		});
 
 	});
