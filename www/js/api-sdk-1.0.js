@@ -22,9 +22,9 @@ function requestHandlerAPI(){
 	var context = this;
 	window.sdk_app_context = null;
 	/* Production API URL */
-	// window.api_base_url = "http://appmarin.com/rest/v1/"; 
+	window.api_base_url = "http://appmarin.com/rest/v1/"; 
 	/* Development local API URL */
-	window.api_base_url = "http://marin.dev/rest/v1/";
+	// window.api_base_url = "http://marin.dev/rest/v1/";
 	
 	this.ls = window.localStorage;
 	/* Constructor */
@@ -41,7 +41,7 @@ function requestHandlerAPI(){
 		 * @param data_login JSON {user_login, user_password}
 		 * @return status Bool true is successfully logged in; false if an error ocurred
 		 */
-		this.loginNative =  function(data_login){
+		this.loginNative =  function( data_login ){
 								
 								var data_object = {
 													user_login : data_login.user_login, 

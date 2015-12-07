@@ -294,7 +294,7 @@
 		$('body').on('click', '#menu_trigger',function(){
 			if(!$(this).hasClass('open')){
 				$(this).addClass('open');
-				$('#main_menu').slideToggle('fast');
+				$('#main_menu').fadeIn('fast');
 				return;
 			}
 			$(this).removeClass('open');
@@ -305,6 +305,14 @@
 			var evento_id = $(this).data('id');
 			console.log(evento_id);
 			app.schedule_expo(evento_id);
+		});
+
+		$('body').on('click', '#uploadFromGallery',function(){
+			app.get_file_from_device('hashtag', 'gallery');
+		});
+
+		$('body').on('click', '#uploadFromCamera',function(){
+			app.get_file_from_device('hashtag', 'camera');
 		});
 
 	});
