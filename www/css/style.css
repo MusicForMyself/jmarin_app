@@ -98,9 +98,9 @@ li>a{color: inherit; text-decoration: none;}
     .each_expo:first-of-type{margin-top: 2rem;}
     .each_expo{ margin: auto; display: block; width: 300px;}
 .rounded.photo{ width: 200px; height: 200px; display: block; overflow: hidden; margin: -1rem 0 0 -3rem; float: right; position: relative; right: 3rem;}
-.each_expo:nth-of-type(2n) .rounded.photo{float: left;margin: -1rem -3rem 0 0rem;right: initial;}
+.each_expo:nth-of-type(2n) .rounded.photo{float: left;margin: -1rem -3rem 0 0rem;right: initial;left: 3rem;}
 .rounded.title{ width: 120px; height: 120px; display: block; float: left; border: 2px solid #FFF; background: #000; color: #FFF; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 2px; font-weight: 100; padding: 2.8rem 0 0 0.75rem; line-height: 1.1rem; z-index: 10; position: relative;}
-.each_expo:nth-of-type(2n) .rounded.title{float: right;left: -3rem;}
+.each_expo:nth-of-type(2n) .rounded.title{float: right;}
 
 /*** Single ***/
 .single_container{}
