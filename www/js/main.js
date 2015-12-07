@@ -315,4 +315,16 @@
 			app.get_file_from_device('hashtag', 'camera');
 		});
 
+		$('body').on('click', '.trigger_gallery',function(){
+			var $context = $(this);
+			$('#gallery_container').fadeIn('fast');
+			$('#gallery_swap').prop('src', $context.data('url'));
+			$('#insert_comment').text($context.data('comment'));
+			$('#insert_description').text($context.data('description'));
+		});
+
+		$('body').on('click', '.close',function(){
+			$(this).parent().fadeOut('fast');
+		});
+
 	});

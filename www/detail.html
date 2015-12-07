@@ -54,7 +54,21 @@
 					<li><a id="masInfoEvento" href="" onclick=" window.open('{{event_moreinfo}}', '_blank', 'location=yes');"><span class="sprited moreinfo"></span>mas info</a></li>
 				</ul>
 				<section class="description">{{{post_content}}}</section>
+				<section id="gallery_thumb_container" class="gallery_thumb_container clearfix">
+					{{#gallery.pool}}
+						<article data-url="{{url}}" data-comment="{{title}}" data-description="{{description}}" class="trigger_gallery each_gallerythumb_wrapper rounded">
+							<img src="{{url}}">
+						</article>
+					{{/gallery.pool}}
+				</section>
 			</article>
+		</section>
+		<section id="gallery_container"  class="gallery_container insert_here">
+			<a class="close">x</a>
+			<h2 class="logo sprited"></h2>
+			<img src="" id="gallery_swap" class="gallery_swap_image">
+			<h3 id="insert_comment"></h3>
+			<span id="insert_description"></span>
 		</section>
 	</script>
 	<script type="text/javascript">
