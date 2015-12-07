@@ -24,7 +24,7 @@ function requestHandlerAPI(){
 	/* Production API URL */
 	window.api_base_url = "http://appmarin.com/rest/v1/"; 
 	/* Development local API URL */
-	// window.api_base_url = "http://marin.dev/rest/v1/";
+	window.api_base_url = "http://marin.dev/rest/v1/";
 	
 	this.ls = window.localStorage;
 	/* Constructor */

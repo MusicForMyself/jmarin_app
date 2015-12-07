@@ -40,7 +40,7 @@
 				
 				{{# pool}}
 					<article class="each_thumb_wrapper">
-						<img data-comment="{{comment}}" class="image_thumb" src="{{img_url}}">
+						<img  data-url="{{img_url}}" data-comment="{{comment}}"  class="image_thumb trigger_gallery" src="{{img_url}}">
 					</article>
 				{{/ pool}}
 			
@@ -49,6 +49,12 @@
 				<a id="uploadFromGallery" class="squared_button"><span class="sprited gallery"></span> fotos</a>
 				<a id="uploadFromCamera" class="squared_button"><span class="sprited inv hashtag"></span> tomar foto</a>
 			</section>	
+		</section>
+		<section id="gallery_container"  class="gallery_container insert_here">
+			<a class="close">x</a>
+			<h2 class="logo sprited"></h2>
+			<img src="" id="gallery_swap" class="gallery_swap_image">
+			<span id="insert_comment"></span>
 		</section>
 	</script>
 	<script type="text/javascript">

@@ -78,7 +78,7 @@ li>a{color: inherit; text-decoration: none;}
 .sprited.expos{ background-position: -1px -60px;}
 .sprited.hashtag{ background-position: -1px -84px;}
 .sprited.inv{-webkit-filter: invert(100%); filter: invert(100%);}
-.squared_button .sprited
+.squared_button .sprited{}
 
 /** Home language select **/
 .full_bg{ display: block; height: 86vh; width: auto;}
