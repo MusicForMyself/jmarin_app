@@ -19,7 +19,7 @@
     font-style: normal;
 }
 
-body { font-size: 62.5%; margin: 0; padding: 0; font-family: "Futura-Medium"; }
+body { font-size: 62.5%; margin: 0; padding: 0; font-family: "Futura-Medium"; background: #000; }
 h1 { font-size: 2.4em; } /* =24px */
 /* =14px */
 li { font-size: 1.4em; } /* =14px? */
@@ -140,7 +140,8 @@ li>a{color: inherit; text-decoration: none;}
 .gallery_container span{color: #FFF;font-size: 0.85rem;font-family: "SerifaStd-Light";font-weight: 100;line-height: 1.2rem;margin: 1.2rem;display: block;}
 
 /*** Semblanza ***/
-.semblanza_container{}
+.semblanza_container{
+    background-color: #FFF;}
 .head_info {background-color: #000;}
 .head_info h2{width: 80%;display: inline-block;vertical-align: middle;margin: 0 0 0.4rem 0;padding: 0 1rem;text-transform: uppercase;letter-spacing: 2.2px;color: #FFF;font-weight: 100;}
 .head_info .sprited{margin: 0 0.5rem 0 1.2rem;}
