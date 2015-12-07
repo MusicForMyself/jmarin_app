@@ -269,7 +269,8 @@ module.exports.metadata =
     "cordova-plugin-splashscreen": "2.1.0",
     "cordova-plugin-whitelist": "1.0.0",
     "org.apache.cordova.inappbrowser": "0.6.0",
-    "cordova-plugin-calendar": "4.4.4"
+    "cordova-plugin-calendar": "4.4.4",
+    "cordova-plugin-console": "1.0.2"
 }
 // BOTTOM OF METADATA
 });

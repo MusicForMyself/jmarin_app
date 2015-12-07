@@ -24,7 +24,7 @@ function requestHandlerAPI(){
 	/* Production API URL */
 	window.api_base_url = "http://appmarin.com/rest/v1/"; 
 	/* Development local API URL */
-	// window.api_base_url = "http://marin.dev/rest/v1/";
+	window.api_base_url = "http://marin.dev/rest/v1/";
 	
 	this.ls = window.localStorage;
 	/* Constructor */
@@ -423,29 +423,11 @@ function requestHandlerAPI(){
 									var ls = window.localStorage;
 									ft.upload( fileURL, encodeURI(api_base_url+"transfers/user_upload/"), context.transfer_win, context.transfer_fail, this.transfer_options );
 								};
-		/*
-		 * Initialize Profile File transfer
-		 * @param fileURL
-		 * TO DO: use client data in server
-		 */
-		this.initializeProfileFileTransfer = function(fileURL){
-									app.showLoader();
-									this.transfer_options = new FileUploadOptions();
-									this.transfer_options.fileKey = "file";
-									this.transfer_options.fileName = fileURL.substr(fileURL.lastIndexOf('/') + 1);
-									this.transfer_options.mimeType = "image/jpeg";
-
-									var params = {};
-										params.client = "app";
-
-									this.transfer_options.params = params;
-
-									var ft = new FileTransfer();
-									ft.upload(fileURL, encodeURI(api_base_url+"transfers/"+user+"/profile/"), context.profile_transfer_win, context.transfer_fail, this.transfer_options);
-								};
+		
 		this.fileselect_win = function (r) {
 								if(!r && r == '')
 									return;
+								console.log(r);
 								context.initializeEventFileTransfer(r);
 							};
 		this.profileselect_win = function (r) {

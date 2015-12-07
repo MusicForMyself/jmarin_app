@@ -164,7 +164,6 @@
 		render_semblanza : function(offset, filter){
 
 			$.getJSON(api_base_url+'commons/semblanza/' , function(response){
-				console.log(response);
 				var source   = $("#semblanza_screen_template").html();
 				var template = Handlebars.compile(source);
 				$('.feed_container').html( template(response) );
@@ -178,10 +177,11 @@
 		render_marin_hashtag : function(offset, filter){
 
 			$.getJSON(api_base_url+'content/hashtag/' , function(response){
-				console.log(response);
+				var pool = { pool: response };
+				console.log(pool);
 				var source   = $("#marin_hashtag_template").html();
 				var template = Handlebars.compile(source);
-				$('.feed_container').html( template(response) );
+				$('.feed_container').html( template(pool) );
 			}).fail(function(err){
 				console.log(err);
 			}).done(function(err){
@@ -282,7 +282,7 @@
 		}
 	};
 
-	 /*      _                                       _                        _       
+	/*     _                                       _                        _       
 	*   __| | ___   ___ _   _ _ __ ___   ___ _ __ | |_   _ __ ___  __ _  __| |_   _ 
 	*  / _` |/ _ \ / __| | | | '_ ` _ \ / _ \ '_ \| __| | '__/ _ \/ _` |/ _` | | | |
 	* | (_| | (_) | (__| |_| | | | | | |  __/ | | | |_  | | |  __/ (_| | (_| | |_| |

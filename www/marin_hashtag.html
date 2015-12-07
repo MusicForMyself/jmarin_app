@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' *.marin.dev *.appmarin.com http://appmarin.com; img-src *; style-src 'self' 'unsafe-inline'; connect-src *.marin.dev *.appmarin.com http://appmarin.com 'self';">
+		<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' *.marin.dev *.appmarin.com http://appmarin.com; img-src *; style-src 'self' 'unsafe-inline'; connect-src *.marin.dev http://marin.dev *.appmarin.com http://appmarin.com 'self';">
 		<meta name="format-detection" content="telephone=no" />
 		<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height" />
 		<title>#JorgeMarin Hashtag</title>
@@ -37,33 +37,12 @@
 				<span class="sprited hashtag"></span> <h2>#JorgeMarin</h2>
 			</section>
 			<section class="thumb_container clearfix">
-				<article class="each_thumb_wrapper">
-					<img class="image_thumb" src="images/placeholder.png">
-				</article>
-				<article class="each_thumb_wrapper">
-					<img class="image_thumb" src="images/placeholder.png">
-				</article>
-				<article class="each_thumb_wrapper">
-					<img class="image_thumb" src="images/placeholder.png">
-				</article>
-				<article class="each_thumb_wrapper">
-					<img class="image_thumb" src="images/placeholder.png">
-				</article>
-				<article class="each_thumb_wrapper">
-					<img class="image_thumb" src="images/placeholder.png">
-				</article>
-				<article class="each_thumb_wrapper">
-					<img class="image_thumb" src="images/placeholder.png">
-				</article>
-				<article class="each_thumb_wrapper">
-					<img class="image_thumb" src="images/placeholder.png">
-				</article>
-				<article class="each_thumb_wrapper">
-					<img class="image_thumb" src="images/placeholder.png">
-				</article>
-				<article class="each_thumb_wrapper">
-					<img class="image_thumb" src="images/placeholder.png">
-				</article>
+				{{# pool}}
+					<article class="each_thumb_wrapper">
+						<img data-comment="{{comment}}" class="image_thumb" src="{{img_url}}">
+					</article>
+				{{/ pool}}
+			
 				<article class="each_thumb_wrapper">
 					<img class="image_thumb" src="images/placeholder.png">
 				</article>
