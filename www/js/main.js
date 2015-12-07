@@ -232,9 +232,15 @@
 			});
 		},
 		schedule_expo : function(expo_id){
-			apiRH.loginGoogleServices();
-			var response = apiRH.makeRequest('events/schedule/', {event_id: expo_id});
-			console.log(response);
+			// apiRH.loginGoogleServices();
+			// var response = apiRH.makeRequest('events/schedule/', {event_id: expo_id});
+			window.plugins.calendar.createEventInteractively('title','eventLocation','notes','2015-01-01','2015-01-01',app.successCalendar,app.errorCalendar);
+		},
+		successCalendar : function(){
+			return true;
+		},
+		errorCalendar : function(){
+			return false;
 		},
 		get_search_results: function(search_term, offset){
 			$.getJSON( api_base_url+'user/'+user+'/search/'+search_term+'/'+offset , function(response){
