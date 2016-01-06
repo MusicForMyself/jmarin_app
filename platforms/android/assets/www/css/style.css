@@ -81,7 +81,7 @@ li>a{color: inherit; text-decoration: none;}
 .squared_button .sprited{}
 
 /** Home language select **/
-.full_bg{ display: block; height: 86vh; width: auto;}
+.full_bg{ display: block; max-height: 100%; max-width: 100%;}
 .content{ min-height: 87vh; width: 100%; height: auto;}
 .home_content{ min-height: 100vh; background-color: #000; color: #FFF;}
     .home_content .logo{ position: relative; margin: 80% auto 0 auto; display: block!important;}

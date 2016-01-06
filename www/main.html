@@ -8,7 +8,7 @@
 		<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height" />
 		<title>Jorge Marín</title>
 		<!-- Vendor styles -->		
-		<link rel="stylesheet" href="css/style.min.css">
+		<link rel="stylesheet" href="css/style.css">
 		<link href="css/font-awesome.min.css" rel="stylesheet">
 		<link rel="icon" href="images/favicon.ico" sizes="32x32">
 		<!-- Vendor libraries and plugins -->
@@ -35,11 +35,16 @@
 	<script id="home_screen_template" type="text/x-handlebars-template">
 		
 	<section class="home_content content clearfix">
+		<div class="cycle-slideshow" data-cycle-speed="600" data-cycle-manual-speed="100" data-cycle-swipe=true data-cycle-swipe-fx=scrollHorz>
 		{{#if lang_en}}
 			<img src="images/full_bg.jpg" class="full_bg">
+			<img src="images/full_bg1.jpg" class="full_bg">
+			<img src="images/full_bg2.jpg" class="full_bg">	
 		{{/if}}
 		{{#if lang_es}}
 			<img src="images/full_bg.jpg" class="full_bg">
+			<img src="images/full_bg1.jpg" class="full_bg">
+			<img src="images/full_bg2.jpg" class="full_bg">
 		{{/if}}
 		{{#if nolang}}
 			<h1 class="logo sprited"><span class="handstand sprited"></span></h1>
@@ -49,6 +54,7 @@
 				<li><a href="main.html?lang=es">ESP</a></li>
 			</ul>
 		{{/if}}
+		</div>
 	</section>
 
 	</script>

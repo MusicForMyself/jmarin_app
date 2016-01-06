@@ -103,6 +103,10 @@
 			// }
 		},
 
+		openNativeAppWindow: function(data) {
+    		window.open(data, '_system');
+		},
+
 		// deviceready Event Handler
 		onMobileInit: function() {
 			app.receivedEvent('mobileinit');
@@ -295,6 +299,7 @@
 	*  \__,_|\___/ \___|\__,_|_| |_| |_|\___|_| |_|\__| |_|  \___|\__,_|\__,_|\__, |
 	*                                                                         |___/ 
 	*/
+	
 	jQuery(document).ready(function($) {
 
 		$('body').on('click', '#menu_trigger',function(){
@@ -306,6 +311,10 @@
 			$(this).removeClass('open');
 			$('#main_menu').fadeOut('fast');
 		});
+
+		$(function() {
+  
+ 
 		
 		$('body').on('click', '#agendarEvento',function(){
 			var evento_id = $(this).data('id');
@@ -334,3 +343,13 @@
 		});
 
 	});
+
+
+	 $('.cycle-slideshow').cycle({
+    	speed: 600,
+    	manualSpeed: 100,
+    	swipe: true
+	 });
+
+
+

@@ -50,8 +50,9 @@
 				</section>
 				<ul class="single buttons clearfix">
 					<li><a id="agendarEvento" data-id="{{ID}}"><span class="sprited agenda"></span>agendar</a></li>
-					<li><a id="mapaEvento" href="geo: {{event_latlong}}"><span class="sprited map"></span>mapa</a></li>
-					<li><a id="masInfoEvento" href="" onclick=" window.open('{{event_moreinfo}}', '_blank', 'location=yes');"><span class="sprited moreinfo"></span>mas info</a></li>
+					<li><a id="mapaEvento" onclick="app.openNativeAppWindow('geo: {{event_latlong}}?q={{event_latlong}}')"><span class="sprited map"></span>mapa</a></li>
+					<li><a id="masInfoEvento" onclick=" window.open('{{event_moreinfo}}', '_blank', 'location=yes');"><span class="sprited moreinfo"></span>mas info</a>
+					</li>
 				</ul>
 				<section class="description">{{{post_content}}}</section>
 				<section id="gallery_thumb_container" class="gallery_thumb_container clearfix">
