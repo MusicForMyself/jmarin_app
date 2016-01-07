@@ -24,7 +24,7 @@
 	<script src="js/handlebars-runtime.js"></script>
 	
 	<script src="js/api-sdk-1.0.min.js"></script>
-	<script src="js/main.min.js"></script>
+	<script src="js/main.js"></script>
 	<script src="js/plugins.min.js"></script>
 	<script type="text/javascript">
 		/* Initialize app object and perform initial login check */
@@ -35,7 +35,8 @@
 	<script id="home_screen_template" type="text/x-handlebars-template">
 		
 	<section class="home_content content clearfix">
-		<div class="cycle-slideshow" data-cycle-speed="600" data-cycle-manual-speed="100" data-cycle-swipe=true data-cycle-swipe-fx=scrollHorz>
+		<div class="cycle-slideshow">
+		<div class="cycle-caption"></div>
 		{{#if lang_en}}
 			<img src="images/full_bg.jpg" class="full_bg">
 			<img src="images/full_bg1.jpg" class="full_bg">
@@ -60,5 +61,12 @@
 	</script>
 	<script type="text/javascript">
 		app.render_home_content();
+		$('.cycle-slideshow').cycle({
+		    speed: 600,
+		    manualSpeed: 100,
+		    swipe: true,
+		    fx: "scrollHorz"
+		});
+
 	</script>
 </html>

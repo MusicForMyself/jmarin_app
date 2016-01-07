@@ -1,355 +1,264 @@
-	 /*     _                        _     _           _   
-	*    / \   _ __  _ __     ___ | |__ (_) ___  ___| |_ 
-	*   / _ \ | '_ \| '_ \   / _ \| '_ \| |/ _ \/ __| __|
-	*  / ___ \| |_) | |_) | | (_) | |_) | |  __/ (__| |_ 
-	* /_/   \_\ .__/| .__/   \___/|_.__// |\___|\___|\__|
-	*         |_|   |_|               |__/               
-	*/
+var app = {
+    app_context: this,
+    initialize: function() {
+        this.bindEvents(), $.ajaxSetup({
+            async: !1
+        }), app.registerPartials(), this.ls = window.localStorage;
+        var e = JSON.parse(this.ls.getItem("museo_log_info"));
+        if (window.user = e ? e.user_login : "", window.user_id = e ? e.user_id : "", window.user_role = e ? e.user_role : "", window.apiRH = (new requestHandlerAPI).construct(app), apiRH.has_token()) {
+            var n = apiRH.has_valid_token();
+            if (n) {
+                $(this).data("id");
+                console.log("You okay, now you can start making calls");
+                var a = window.is_home;
+                return void(a && window.location.assign("feed.html?filter_feed=all"))
+            }
+            return void console.log("Your token is not valid anymore (or has not been activated yet)")
+        }
+        console.log(JSON.stringify(apiRH.getRequest("robots", null))), console.log(apiRH.request_token().get_request_token())
+    },
+    registerPartials: function() {
+        var e = ["header", "footer"];
+        e.forEach(function(e) {
+            $.ajax({
+                url: "views/partials/" + e + ".hbs",
+                success: function(n) {
+                    void 0 === Handlebars.templates && (Handlebars.templates = {}), Handlebars.templates[e] = Handlebars.compile(n)
+                }
+            })
+        })
+    },
+    registerTemplate: function(e) {
+        $.ajax({
+            url: "views/" + e + ".hbs",
+            success: function(n) {
+                void 0 === Handlebars.templates && (Handlebars.templates = {}), Handlebars.templates[e] = Handlebars.compile(n)
+            }
+        })
+    },
+    bindEvents: function() {
+        document.addEventListener("deviceready", app.onDeviceReady, !1), document.addEventListener("mobileinit", app.onDMobileInit, !1)
+    },
+    openNativeAppWindow: function(data) {
+        window.open(data, '_system')
+    },
+    onDeviceReady: function() {
+        app.receivedEvent("deviceready")
+    },
+    onMobileInit: function() {
+        app.receivedEvent("mobileinit")
+    },
+    receivedEvent: function(e) {
+        "deviceready" == e && "undefined" != typeof navigator.splashscreen && navigator.splashscreen.hide()
+    },
+    getUrlVars: function() {
+        var e = {};
+        window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(n, a, o) {
+            e[a] = o
+        });
+        return e
+    },
+    getFormData: function(e) {
+        return $(e).serializeJSON()
+    },
+    isObjEmpty: function(e) {
+        if (null == e) return !0;
+        if (e.length > 0) return !1;
+        if (0 === e.length) return !0;
+        for (var n in e)
+            if (hasOwnProperty.call(e, n)) return !1;
+        return !0
+    },
+    render_header: function() {
+        var e = Handlebars.templates.header();
+        $(".main").prepend(e)
+    },
+    render_footer: function() {
+        var e = Handlebars.templates.footer();
+        $(".main").append(e)
+    },
+    render_home_content: function() {
+        var e = {};
+        e.nolang = !0;
+        var n = app.getUrlVars();
+        if (n.lang && "" != n.lang) {
+            var a = "lang_" + n.lang;
+            e[a] = !0, e.nolang = !1
+        }
+        
+        this.ls.setItem("lang", n.lang);
+        
+        console.log("Lenguaje: " + n.lang);
 
-	var app = {
-		app_context: this,
-		// Application Constructor
-		initialize: function() {
-			this.bindEvents();
-			/* IMPORTANT to set requests to be syncronous */
-			$.ajaxSetup({
-				 async: false
-			});
-			app.registerPartials();
-			// localStorage init
-			this.ls 		= window.localStorage;
-			var log_info 	= JSON.parse(this.ls.getItem('museo_log_info'));
-							window.user 	= (log_info) ? log_info.user_login : '';
-							window.user_id 	= (log_info) ? log_info.user_id : '';
-							window.user_role = (log_info) ? log_info.user_role : '';
+        var o = $("#home_screen_template").html(),
+            t = Handlebars.compile(o);
+        $("#home_container").html(t(e)), n.lang && "" != n.lang && app.render_header()
+    },
+    render_semblanza: function(e, n) {
+        $.getJSON(api_base_url + "commons/semblanza/?lang=" + this.ls.getItem('lang'), function(e) {
+            var n = $("#semblanza_screen_template").html(),
+                a = Handlebars.compile(n);
+            $(".feed_container").html(a(e))
+        }).fail(function(e) {
+            console.log(e)
+        }).done(function(e) {
+            app.render_header(), app.render_footer()
+        })
+    },
+    render_marin_hashtag: function(e, n) {
+        $.getJSON(api_base_url + "content/hashtag/", function(e) {
+            var n = {
+                pool: e
+            };
+            console.log(n);
+            var a = $("#marin_hashtag_template").html(),
+                o = Handlebars.compile(a);
+            $(".feed_container").html(o(n))
+        }).fail(function(e) {
+            console.log(e)
+        }).done(function(e) {
+            app.render_header(), app.render_footer()
+        })
+    },
+    render_upload_fromgallery: function() {
+        $.getJSON(api_base_url + "content/hashtag/", function(e) {
+            console.log(e);
+            var n = $("#marin_hashtag_template").html(),
+                a = Handlebars.compile(n);
+            $(".feed_container").html(a(e))
+        }).fail(function(e) {
+            console.log(e)
+        }).done(function(e) {
+            app.render_header(), app.render_footer()
+        })
+    },
+    get_expos_feed: function(e) {
+        $.getJSON(api_base_url + "expos/feed/" + e + "?lang=" + this.ls.getItem('lang'), function(e) {
+            console.log(e);
+            var n = $("#expos_feed_template").html(),
+                a = Handlebars.compile(n);
+            $(".feed_container").html(a(e))
+        }).fail(function(e) {
+            console.log(e)
+        }).done(function(e) {
+            app.render_header(), app.render_footer()
+        })
+    },
+    get_expo_detail: function(e) {
+        $.getJSON(api_base_url + "expos/detail/" + e, function(e) {
+            console.log(e);
+            var n = $("#expos_single_template").html(),
+                a = Handlebars.compile(n);
+            $(".single_container").html(a(e))
+        }).fail(function(e) {
+            console.log(e)
+        }).done(function(e) {
+            app.render_header(), app.render_footer()
+        })
+    },
+    schedule_expo: function(e) {
+        window.plugins.calendar.createEventInteractively("title", "eventLocation", "notes", "2015-01-01", "2015-01-01", app.successCalendar, app.errorCalendar)
+    },
+    successCalendar: function() {
+        return !0
+    },
+    errorCalendar: function() {
+        return !1
+    },
+    get_search_results: function(e, n) {
+        $.getJSON(api_base_url + "user/" + user + "/search/" + e + "/" + n, function(e) {
+            var a = $("#search_entry_template").html(),
+                o = Handlebars.compile(a);
+            return console.log(e), $(".feed_container").append(o(e.data)).trigger("create"), $("#load_more_results").length > 0 && $("#load_more_results").remove(), 0 == e.data ? void $(".feed_container").append("<a class='load_more' data-role='none'>No hay resultados para tu búsqueda</a>") : e.data.results.length < 10 ? void $(".feed_container").append("<a class='load_more' data-role='none'>No hay más resultados</a>") : void $(".feed_container").append("<a class='load_more' id='load_more_results' data-role='none' data-page='" + n + "'><i class='fa fa-refresh'></i> Cargar más</a>")
+        })
+    },
+    get_file_from_device: function(e, n) {
+        apiRH.getFileFromDevice(e, n)
+    },
+    showLoader: function() {
+        $("#spinner").show()
+    },
+    hideLoader: function() {
+        $("#spinner").hide()
+    },
+    toast: function(e, n) {
+        try {
+            n ? window.plugins.toast.showLongBottom(e) : window.plugins.toast.showLongCenter(e)
+        } catch (a) {
+            console.log("Toasting error: " + JSON.stringify(a)), alert(e)
+        }
+    }
+};
+jQuery(document).ready(function(e) {
+    e("body").on("click", "#menu_trigger", function() {
+        return e(this).hasClass("open") ? (e(this).removeClass("open"), void e("#main_menu").fadeOut("fast")) : (e(this).addClass("open"), void e("#main_menu").fadeIn("fast"))
+    }), e("body").on("click", "#agendarEvento", function() {
+        var n = e(this).data("id");
+        console.log(n), app.schedule_expo(n)
+    }), e("body").on("click", "#uploadFromGallery", function() {
+        app.get_file_from_device("hashtag", "gallery")
+    }), e("body").on("click", "#uploadFromCamera", function() {
+        app.get_file_from_device("hashtag", "camera")
+    }), e("body").on("click", ".trigger_gallery", function() {
+        var n = e(this);
+        e("#gallery_container").fadeIn("fast"), e("#gallery_swap").prop("src", n.data("url")), e("#insert_comment").text(n.data("comment")), e("#insert_description").text(n.data("description"))
+    }), e("body").on("click", ".close", function() {
+        e(this).parent().fadeOut("fast")
+    })
+});
 
-			/* Initialize API request handler */
-			window.apiRH = new requestHandlerAPI().construct(app);
+$(document).scroll(function(e) {
+    var mmain = $("#main_menu");
 
-			/* Check if has any token */
-			if(apiRH.has_token()){
-				/* Check if has a valid token */
-				var response = apiRH.has_valid_token();
-				if(response){
-					var data_id = $(this).data('id');
-					console.log('You okay, now you can start making calls');
-					/* Take the user to it's timeline */
-					var is_home = window.is_home;
-					if(is_home)
-						window.location.assign('feed.html?filter_feed=all');
-					return;
-				}else{
-					/* Token is not valid, user needs to authenticate */
-					console.log("Your token is not valid anymore (or has not been activated yet)");
-					// window.location.assign('index.html');
-					return;
-				}
-			}
-			
-			/* DEBUG Executing robots request first of all */
-			console.log(JSON.stringify(apiRH.getRequest('robots', null)));
-			/* Requesting passive token if no token is previously stored */
-			console.log(apiRH.request_token().get_request_token());
-			// window.location.assign('index.html');
-		},
-		registerPartials: function() {
-			var template = null;
-			/* Add files to be loaded here */
-			var filenames = ['header', 'footer'];
-			filenames.forEach(function (filename) {
-				$.ajax({
-		            url : 'views/partials/' + filename + '.hbs',
-		            success : function(response) {
-			                if (Handlebars.templates === undefined)
-			                    Handlebars.templates = {};
-			            Handlebars.templates[filename] = Handlebars.compile(response);
-		            }
-		        });
-			});
-			
-		},
-		registerTemplate : function(name) {
-		    $.ajax({
-	            url : 'views/' + name + '.hbs',
-	            success : function(response) {
-		                if (Handlebars.templates === undefined)
-		                    Handlebars.templates = {};
-		            Handlebars.templates[name] = Handlebars.compile(response);
-	            }
-	        });
-	        return;
-		},
-		bindEvents: function() {
-			document.addEventListener('deviceready', app.onDeviceReady, false);
-			document.addEventListener('mobileinit', app.onDMobileInit, false);
-		},
+    if (!mmain.hasClass('open')) {
 
-		// deviceready Event Handler
-		onDeviceReady: function() {
-			app.receivedEvent('deviceready');
+        $('#main_menu').removeClass('open');
+        $('#main_menu').fadeOut('fast');
+        return;
+    }
+    return;
+});
 
-			/*   ___    _         _   _     
-			*  / _ \  / \  _   _| |_| |__  
-			* | | | |/ _ \| | | | __| '_ \ 
-			* | |_| / ___ \ |_| | |_| | | |
-			*  \___/_/   \_\__,_|\__|_| |_|
-			*/                              
-			// try{
-			// 	OAuth.initialize('7O8IRe-xiPNc0JrOXSv3rc90RmU');
-			// }
-			// catch(err){
-			// 	// app.toast("Oauth error ocurred");
-			// 	console.log('OAuth initialize error: ' + err);
-			// }
-		},
+$('body').click("tap", function tapHandler(e) {
+    console.log($(e.target).attr('id'));
+    var mmain = $("#main_menu");
 
-		openNativeAppWindow: function(data) {
-    		window.open(data, '_system');
-		},
+    if (!mmain.hasClass('open') && $(e.target).attr('id') != 'menu_trigger') {
+        $('#main_menu').removeClass('open');
+        $('#main_menu').fadeOut('fast');
+        return;
+    }
+});
 
-		// deviceready Event Handler
-		onMobileInit: function() {
-			app.receivedEvent('mobileinit');
-		},
-		// Update DOM on a Received Event
-		receivedEvent: function(id) {
-			if(id == 'deviceready' && typeof navigator.splashscreen != 'undefined'){
-				navigator.splashscreen.hide();
-			}
-		},
-		getUrlVars: function() {
-			var vars = {};
-			var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
-				vars[key] = value;
-			});
-			return vars;
-		},
-		/* Returns the values in a form as an associative array */
-		/* IMPORTANT: Does NOT include password type fields */
-		getFormData: function (selector) {
-			return $(selector).serializeJSON();
-		},
-		isObjEmpty: function (obj) {
+$(document).scroll(function(e){
+    var mmain = $("#main_menu");
+    
+    if(!mmain.hasClass('open')) {
+    	
+        $('#main_menu').removeClass('open');
+		$('#main_menu').fadeOut('fast');
+		return;
+    }
+    return;
+});
 
-				if (obj == null) return true;
 
-				if (obj.length > 0)    return false;
-				if (obj.length === 0)  return true;
-
-				for (var key in obj) {
-					if (hasOwnProperty.call(obj, key)) return false;
-				}
-				return true;
-		},
-		render_header : function(){
-			var template = Handlebars.templates.header();
-			$('.main').prepend( template );
-		},
-		render_footer : function(){
-			var template = Handlebars.templates.footer();
-			$('.main').append( template );
-		},
-		render_home_content : function(){
-			var data = {};
-			data['nolang'] = true;
-			var GET = app.getUrlVars();
-			if(GET.lang && GET.lang != ''){
-				var langis = 'lang_'+GET.lang;
-				data[langis] = true;
-				data['nolang'] = false;
-			}
-			var source   = $("#home_screen_template").html();
-			var template = Handlebars.compile(source);
-			$('#home_container').html( template(data) );
-			if(GET.lang && GET.lang != '')
-				app.render_header();
-			return;
-		},
-		render_semblanza : function(offset, filter){
-
-			$.getJSON(api_base_url+'commons/semblanza/' , function(response){
-				var source   = $("#semblanza_screen_template").html();
-				var template = Handlebars.compile(source);
-				$('.feed_container').html( template(response) );
-			}).fail(function(err){
-				console.log(err);
-			}).done(function(err){
-				app.render_header();
-				app.render_footer();
-			});
-		},
-		render_marin_hashtag : function(offset, filter){
-
-			$.getJSON(api_base_url+'content/hashtag/' , function(response){
-				var pool = { pool: response };
-				console.log(pool);
-				var source   = $("#marin_hashtag_template").html();
-				var template = Handlebars.compile(source);
-				$('.feed_container').html( template(pool) );
-			}).fail(function(err){
-				console.log(err);
-			}).done(function(err){
-				app.render_header();
-				app.render_footer();
-			});
-		},
-		render_upload_fromgallery : function(){
-
-			$.getJSON(api_base_url+'content/hashtag/' , function(response){
-				console.log(response);
-				var source   = $("#marin_hashtag_template").html();
-				var template = Handlebars.compile(source);
-				$('.feed_container').html( template(response) );
-			}).fail(function(err){
-				console.log(err);
-			}).done(function(err){
-				app.render_header();
-				app.render_footer();
-			});
-		},
-		get_expos_feed : function(offset){
-
-			$.getJSON(api_base_url+'expos/feed/'+offset , function(response){
-				console.log(response);
-				var source   = $("#expos_feed_template").html();
-				var template = Handlebars.compile(source);
-				$('.feed_container').html( template(response) );
-			}).fail(function(err){
-				console.log(err);
-			}).done(function(err){
-				app.render_header();
-				app.render_footer();
-			});
-		},
-		get_expo_detail : function(expo_id){
-			
-			$.getJSON(api_base_url+'expos/detail/'+expo_id , function(response){
-				console.log(response);
-				var source   = $("#expos_single_template").html();
-				var template = Handlebars.compile(source);
-				$('.single_container').html( template(response) );
-			}).fail(function(err){
-				console.log(err);
-			}).done(function(err){
-				app.render_header();
-				app.render_footer();
-			});
-		},
-		schedule_expo : function(expo_id){
-			// apiRH.loginGoogleServices();
-			// var response = apiRH.makeRequest('events/schedule/', {event_id: expo_id});
-			window.plugins.calendar.createEventInteractively('title','eventLocation','notes','2015-01-01','2015-01-01',app.successCalendar,app.errorCalendar);
-		},
-		successCalendar : function(){
-			return true;
-		},
-		errorCalendar : function(){
-			return false;
-		},
-		get_search_results: function(search_term, offset){
-			$.getJSON( api_base_url+'user/'+user+'/search/'+search_term+'/'+offset , function(response){
-				var source   = $("#search_entry_template").html();
-				var template = Handlebars.compile(source);
-				console.log(response);
-				$('.feed_container').append( template(response.data) ).trigger('create');
-				/* To do: send block length from the app, change hardcoded 10 */
-				if($('#load_more_results').length > 0)
-					$('#load_more_results').remove();
-				if(response.data == 0){
-					$('.feed_container').append( "<a class='load_more' data-role='none'>No hay resultados para tu búsqueda</a>" );
-					return;
-				}
-				if(response.data.results.length < 10){
-					$('.feed_container').append( "<a class='load_more' data-role='none'>No hay más resultados</a>" );
-					return;
-				}
-				$('.feed_container').append( "<a class='load_more' id='load_more_results' data-role='none' data-page='"+offset+"'><i class='fa fa-refresh'></i> Cargar más</a>" );
-				return;
-			});
-		},
-		get_file_from_device: function(destination, source){
-			apiRH.getFileFromDevice(destination, source);		
-		},
-		showLoader: function(){
-			$('#spinner').show();
-		},
-		hideLoader: function(){
-			$('#spinner').hide();
-		},
-		toast: function(message, bottom){
-			try{
-				if(!bottom){
-					window.plugins.toast.showLongCenter(message);
-				}else{
-					window.plugins.toast.showLongBottom(message);
-				}
-			}
-			catch(err){
-				console.log('Toasting error: ' + JSON.stringify(err));
-				alert(message);
-			}
-			return;
-		}
-	};
-
-	/*     _                                       _                        _       
-	*   __| | ___   ___ _   _ _ __ ___   ___ _ __ | |_   _ __ ___  __ _  __| |_   _ 
-	*  / _` |/ _ \ / __| | | | '_ ` _ \ / _ \ '_ \| __| | '__/ _ \/ _` |/ _` | | | |
-	* | (_| | (_) | (__| |_| | | | | | |  __/ | | | |_  | | |  __/ (_| | (_| | |_| |
-	*  \__,_|\___/ \___|\__,_|_| |_| |_|\___|_| |_|\__| |_|  \___|\__,_|\__,_|\__, |
-	*                                                                         |___/ 
-	*/
+$('body').click( "tap", function tapHandler( e ){  
+	console.log($(e.target).attr('id'));  
+	var mmain = $("#main_menu");
 	
-	jQuery(document).ready(function($) {
+	if(!mmain.hasClass('open') && $(e.target).attr('id') != 'menu_trigger') {
+		$('#main_menu').removeClass('open');
+		$('#main_menu').fadeOut('fast');
+		return;
+	}
+	}
+);
 
-		$('body').on('click', '#menu_trigger',function(){
-			if(!$(this).hasClass('open')){
-				$(this).addClass('open');
-				$('#main_menu').fadeIn('fast');
-				return;
-			}
-			$(this).removeClass('open');
-			$('#main_menu').fadeOut('fast');
-		});
-
-		$(function() {
-  
- 
-		
-		$('body').on('click', '#agendarEvento',function(){
-			var evento_id = $(this).data('id');
-			console.log(evento_id);
-			app.schedule_expo(evento_id);
-		});
-
-		$('body').on('click', '#uploadFromGallery',function(){
-			app.get_file_from_device('hashtag', 'gallery');
-		});
-
-		$('body').on('click', '#uploadFromCamera',function(){
-			app.get_file_from_device('hashtag', 'camera');
-		});
-
-		$('body').on('click', '.trigger_gallery',function(){
-			var $context = $(this);
-			$('#gallery_container').fadeIn('fast');
-			$('#gallery_swap').prop('src', $context.data('url'));
-			$('#insert_comment').text($context.data('comment'));
-			$('#insert_description').text($context.data('description'));
-		});
-
-		$('body').on('click', '.close',function(){
-			$(this).parent().fadeOut('fast');
-		});
-
-	});
-
-
-	 $('.cycle-slideshow').cycle({
-    	speed: 600,
-    	manualSpeed: 100,
-    	swipe: true
-	 });
-
-
+$('.cycle-slideshow').cycle({
+    speed: 600,
+    manualSpeed: 100,
+    swipe: true,
+    fx: "scrollHorz"
+});
 
