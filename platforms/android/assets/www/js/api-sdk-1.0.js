@@ -371,26 +371,28 @@ function requestHandlerAPI(){
 		 */
 		this.loginCallbackGP = function(response){
 
-									response.get('/plus/v1/people/me').done(function(profile_response) {
-										var email = profile_response.name.familyName+profile_response.id+"@fake.mail";
-										var username = profile_response.name.familyName+profile_response.id;
-										var found = found = apiRH.create_internal_user(username, email, {'gplus_username': username}, window.localStorage.getItem('request_token'));
-										if(found){
-											window.location.assign('feed.html?filter_feed=all');
-											return;
-										}
-										window.location.assign('feed.html?filter_feed=all');
-										return;
-									})
-									 .fail(function(error){
-										console.log(error);
-									});
-									
-								};
+			response.get('/plus/v1/people/me').done(function(profile_response) {
+				var email = profile_response.name.familyName+profile_response.id+"@fake.mail";
+				var username = profile_response.name.familyName+profile_response.id;
+				var found = found = apiRH.create_internal_user(username, email, {'gplus_username': username}, window.localStorage.getItem('request_token'));
+				if(found){
+					window.location.assign('feed.html?filter_feed=all');
+					return;
+				}
+				window.location.assign('feed.html?filter_feed=all');
+				return;
+			})
+			 .fail(function(error){
+				console.log(error);
+			});
+			
+		};
+
 		this.transfer_win = function (r) {
-									app.toast("Se ha publicado una imagen");
-									window.location.reload(true);
-								};
+			app.toast("Se ha publicado una imagen");
+			window.location.assign('marin_hashtag.html');
+		};
+
 		this.profile_transfer_win = function (r) {
 									app.toast("Imagen de perfil modificada");
 									window.location.reload(true);
@@ -407,37 +409,53 @@ function requestHandlerAPI(){
 		 * Note: to avoid passing the event value through these callbacks we save it to a localStorage item
 		 */
 		this.initializeEventFileTransfer = function(fileURL){
-									app.showLoader();
-									this.transfer_options = new FileUploadOptions();
-									this.transfer_options.fileKey = "file";
-									this.transfer_options.fileName = fileURL.substr(fileURL.lastIndexOf('/') + 1);
-									this.transfer_options.mimeType = "image/jpeg";
+			app.showLoader();
+			this.transfer_options = new FileUploadOptions();
+			this.transfer_options.fileKey = "file";
+			this.transfer_options.fileName = fileURL.substr(fileURL.lastIndexOf('/') + 1);
+			this.transfer_options.mimeType = "image/jpeg";
 
-									var params = {};
-										params.client = "app";
-										params.comment = "this is not a comment";
+			var params = {};
+				params.client = "app";
+				params.comment = "this is not a comment";
 
-									this.transfer_options.params = params;
+			this.transfer_options.params = params;
 
-									var ft = new FileTransfer();
-									var ls = window.localStorage;
-									ft.upload( fileURL, encodeURI(api_base_url+"transfers/user_upload/"), context.transfer_win, context.transfer_fail, this.transfer_options );
-								};
+			var ft = new FileTransfer();
+			var ls = window.localStorage;
+			ft.upload( fileURL, encodeURI(api_base_url+"transfers/user_upload/"), context.transfer_win, context.transfer_fail, this.transfer_options );
+		};
 		
 		this.fileselect_win = function (r) {
-								if(!r && r == '')
-									return;
-								console.log(r);
-								context.initializeEventFileTransfer(r);
-							};
-		this.profileselect_win = function (r) {
-								if(!r && r == '')
-									return;
-								context.initializeProfileFileTransfer(r);
-							};
+			if(!r && r == '')
+				return;
+				console.log(r);
+       			document.getElementById("image_temp").src = r;
+       			app.ls.setItem("file", r);
+
+		};
+
+		this.fileupload_choice = function(r){
+			
+			r = this.ls.getItem("file");
+			
+			if(!r && r == '')
+				return;
+				console.log("Rute: " + r);
+				
+				context.initializeEventFileTransfer(r);
+					
+		};
+
+		this.profileselect_win = function () {
+			var f = this.ls.getItem("file");	
+			if(!r && r == '')
+				return;
+			context.initializeProfileFileTransfer(r);
+		};
 		this.fileselect_fail = function (error) {
-								alert("An error has occurred: " + error);
-							};
+			alert("An error has occurred: " + error);
+		};
 		/*
 		 * @param String destination Upload destination Options: "profile", "event"
 		 * @param String source Source to get media file from Options: "camera", "gallery"

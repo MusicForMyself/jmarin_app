@@ -86,16 +86,16 @@ var app = {
             e[a] = !0, e.nolang = !1
         }
         
-        this.ls.setItem("lang", n.lang);
+        this.ls.setItem("devicelang", n.lang);
         
-        console.log("Lenguaje: " + n.lang);
+        console.log("devicelang: " + n.lang);
 
         var o = $("#home_screen_template").html(),
             t = Handlebars.compile(o);
         $("#home_container").html(t(e)), n.lang && "" != n.lang && app.render_header()
     },
     render_semblanza: function(e, n) {
-        $.getJSON(api_base_url + "commons/semblanza/?lang=" + this.ls.getItem('lang'), function(e) {
+        $.getJSON(api_base_url + "commons/semblanza/?devicelang=" + this.ls.getItem('devicelang'), function(e) {
             var n = $("#semblanza_screen_template").html(),
                 a = Handlebars.compile(n);
             $(".feed_container").html(a(e))
@@ -129,9 +129,15 @@ var app = {
         }).fail(function(e) {
             console.log(e)
         }).done(function(e) {
+
             app.render_header(), app.render_footer()
         })
     },
+
+    upload_file_choice: function(){
+        apiRH.fileupload_choice()
+    },
+
     get_expos_feed: function(e) {
         $.getJSON(api_base_url + "expos/feed/" + e + "?lang=" + this.ls.getItem('lang'), function(e) {
             console.log(e);
@@ -144,6 +150,7 @@ var app = {
             app.render_header(), app.render_footer()
         })
     },
+
     get_expo_detail: function(e) {
         $.getJSON(api_base_url + "expos/detail/" + e, function(e) {
             console.log(e);
@@ -156,9 +163,11 @@ var app = {
             app.render_header(), app.render_footer()
         })
     },
+
     schedule_expo: function(e) {
         window.plugins.calendar.createEventInteractively("title", "eventLocation", "notes", "2015-01-01", "2015-01-01", app.successCalendar, app.errorCalendar)
     },
+
     successCalendar: function() {
         return !0
     },
@@ -189,6 +198,7 @@ var app = {
         }
     }
 };
+
 jQuery(document).ready(function(e) {
     e("body").on("click", "#menu_trigger", function() {
         return e(this).hasClass("open") ? (e(this).removeClass("open"), void e("#main_menu").fadeOut("fast")) : (e(this).addClass("open"), void e("#main_menu").fadeIn("fast"))
@@ -204,6 +214,8 @@ jQuery(document).ready(function(e) {
         e("#gallery_container").fadeIn("fast"), e("#gallery_swap").prop("src", n.data("url")), e("#insert_comment").text(n.data("comment")), e("#insert_description").text(n.data("description"))
     }), e("body").on("click", ".close", function() {
         e(this).parent().fadeOut("fast")
+    }), e("body").click("uploadFileStorage", function() {
+        app.upload_file_choice()
     })
 });
 
@@ -255,10 +267,4 @@ $('body').click( "tap", function tapHandler( e ){
 	}
 );
 
-$('.cycle-slideshow').cycle({
-    speed: 600,
-    manualSpeed: 100,
-    swipe: true,
-    fx: "scrollHorz"
-});
 
