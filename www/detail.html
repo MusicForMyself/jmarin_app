@@ -22,8 +22,8 @@
 	<!-- Templates -->
 	<script src="js/handlebars-runtime.js"></script>
 	
-	<script src="js/api-sdk-1.0.min.js"></script>
-	<script src="js/main.min.js"></script>
+	<script src="js/api-sdk-1.0.js"></script>
+	<script src="js/main.js"></script>
 	<script src="js/plugins.min.js"></script>
 	<script type="text/javascript">
 		/* Initialize app object and perform initial login check */
@@ -49,7 +49,7 @@
 					</section>
 				</section>
 				<ul class="single buttons clearfix">
-					<li><a id="agendarEvento" data-id="{{ID}}"><span class="sprited agenda"></span>agendar</a></li>
+					<li><a id="agendarEvento" data-id="{{ID}}" onclick="app.schedule_expo('{{post_title}}', '{{event_location}}', '','{{event_date_start}}', '{{event_date_end}}')"><span class="sprited agenda"></span>agendar</a></li>
 					<li><a id="mapaEvento" onclick="app.openNativeAppWindow('geo: {{event_latlong}}?q={{event_latlong}}')"><span class="sprited map"></span>mapa</a></li>
 					<li><a id="masInfoEvento" onclick=" window.open('{{event_moreinfo}}', '_blank', 'location=yes');"><span class="sprited moreinfo"></span>mas info</a>
 					</li>

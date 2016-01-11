@@ -390,7 +390,7 @@ function requestHandlerAPI(){
 
 		this.transfer_win = function (r) {
 			app.toast("Se ha publicado una imagen");
-			window.location.assign('marin_hashtag.html');
+			window.location.reload('marin_hashtag.html');
 		};
 
 		this.profile_transfer_win = function (r) {

@@ -23,8 +23,8 @@
 	<!-- Templates -->
 	<script src="js/handlebars-runtime.js"></script>
 	
-	<script src="js/api-sdk-1.0.min.js"></script>
-	<script src="js/main.min.js"></script>
+	<script src="js/api-sdk-1.0.js"></script>
+	<script src="js/main.js"></script>
 	<script src="js/plugins.min.js"></script>
 	<script type="text/javascript">
 		/* Initialize app object and perform initial login check */
@@ -40,7 +40,7 @@
 			<section class="pool_container">
 				{{#each pool}}
 				<article class="each_expo feed_element clearfix">
-					<a href="detail.html?expo_id={{ID}}">
+					<a href="detail.html?expo_id={{ID}}&devicelang={{lang}}">
 						<h4 class="rounded title">{{post_title}}</h4>
 						<figure class="rounded photo"><img src="{{thumb_url}}"></figure>
 					</a>

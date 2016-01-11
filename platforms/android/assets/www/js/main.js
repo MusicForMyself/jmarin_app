@@ -85,13 +85,23 @@ var app = {
             var a = "lang_" + n.lang;
             e[a] = !0, e.nolang = !1
         }
-        
+
         this.ls.setItem("devicelang", n.lang);
         
-        console.log("devicelang: " + n.lang);
+        $.getJSON(api_base_url + "content/home/", function(r) {
+           
+        }).fail(function(r) {
+            ;
+        }).done(function(r) {
+           console.log( "JSON: " + r.gallery[0]);
+           e['slider-1'] = r.gallery[0];
+           e['slider-2'] = r.gallery[1];
+           e['slider-3'] = r.gallery[2];
+        })
 
+        console.log(e)
         var o = $("#home_screen_template").html(),
-            t = Handlebars.compile(o);
+        t = Handlebars.compile(o);
         $("#home_container").html(t(e)), n.lang && "" != n.lang && app.render_header()
     },
     render_semblanza: function(e, n) {
@@ -139,8 +149,11 @@ var app = {
     },
 
     get_expos_feed: function(e) {
-        $.getJSON(api_base_url + "expos/feed/" + e + "?lang=" + this.ls.getItem('lang'), function(e) {
+         var lang = this.ls.getItem('devicelang');
+        $.getJSON(api_base_url + "expos/feed/" + e + "?devicelang=" + this.ls.getItem('devicelang'), function(e) {
+
             console.log(e);
+
             var n = $("#expos_feed_template").html(),
                 a = Handlebars.compile(n);
             $(".feed_container").html(a(e))
@@ -152,7 +165,7 @@ var app = {
     },
 
     get_expo_detail: function(e) {
-        $.getJSON(api_base_url + "expos/detail/" + e, function(e) {
+        $.getJSON(api_base_url + "expos/detail/" + e + "?devicelang=" + this.ls.getItem('devicelang'), function(e) {
             console.log(e);
             var n = $("#expos_single_template").html(),
                 a = Handlebars.compile(n);
@@ -164,8 +177,18 @@ var app = {
         })
     },
 
-    schedule_expo: function(e) {
-        window.plugins.calendar.createEventInteractively("title", "eventLocation", "notes", "2015-01-01", "2015-01-01", app.successCalendar, app.errorCalendar)
+    schedule_expo: function(t, e, n, di, df) {
+
+    // prep some variables
+
+    var fi = di.split(".");
+    var ff= df.split(".");
+
+    var startDate = new Date(fi[2],fi[1],fi[0],10,00,0,0,0); 
+    var endDate = new Date(ff[2],ff[1],ff[0],18,00,0,0,0);
+
+
+        window.plugins.calendar.createEventInteractively(t, e, n, startDate, endDate, app.successCalendar, app.errorCalendar)
     },
 
     successCalendar: function() {
@@ -202,9 +225,6 @@ var app = {
 jQuery(document).ready(function(e) {
     e("body").on("click", "#menu_trigger", function() {
         return e(this).hasClass("open") ? (e(this).removeClass("open"), void e("#main_menu").fadeOut("fast")) : (e(this).addClass("open"), void e("#main_menu").fadeIn("fast"))
-    }), e("body").on("click", "#agendarEvento", function() {
-        var n = e(this).data("id");
-        console.log(n), app.schedule_expo(n)
     }), e("body").on("click", "#uploadFromGallery", function() {
         app.get_file_from_device("hashtag", "gallery")
     }), e("body").on("click", "#uploadFromCamera", function() {

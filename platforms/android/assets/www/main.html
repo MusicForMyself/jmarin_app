@@ -23,7 +23,7 @@
 	<!-- Templates -->
 	<script src="js/handlebars-runtime.js"></script>
 	
-	<script src="js/api-sdk-1.0.min.js"></script>
+	<script src="js/api-sdk-1.0.js"></script>
 	<script src="js/main.js"></script>
 	<script src="js/plugins.min.js"></script>
 	<script type="text/javascript">
@@ -37,14 +37,14 @@
 	<section class="home_content content clearfix">
 		<div class="cycle-slideshow">
 		{{#if lang_en}}
-			<img src="images/full_bg.jpg" class="full_bg">
-			<img src="images/full_bg1.jpg" class="full_bg">
-			<img src="images/full_bg2.jpg" class="full_bg">	
+			<img src="{{slider-1}}" class="full_bg">			
+			<img src="{{slider-2}}" class="full_bg">			
+			<img src="{{slider-3}}" class="full_bg">			
 		{{/if}}
 		{{#if lang_es}}
-			<img src="images/full_bg.jpg" class="full_bg">
-			<img src="images/full_bg1.jpg" class="full_bg">
-			<img src="images/full_bg2.jpg" class="full_bg">
+			<img src="{{slider-1}}" class="full_bg">			
+			<img src="{{slider-2}}" class="full_bg">			
+			<img src="{{slider-3}}" class="full_bg">			
 		{{/if}}
 		{{#if nolang}}
 			<h1 class="logo sprited"><span class="handstand sprited"></span></h1>
