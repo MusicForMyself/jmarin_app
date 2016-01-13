@@ -81,12 +81,17 @@ var app = {
         var e = {};
         e.nolang = !0;
         var n = app.getUrlVars();
+
         if (n.lang && "" != n.lang) {
+            this.ls.setItem("devicelang", n.lang);
+            var a = "lang_" + n.lang;
+            e[a] = !0, e.nolang = !1
+        }else if(this.ls.getItem("devicelang") != ""){
+
+            n.lang = this.ls.getItem("devicelang");
             var a = "lang_" + n.lang;
             e[a] = !0, e.nolang = !1
         }
-
-        this.ls.setItem("devicelang", n.lang);
         
         $.getJSON(api_base_url + "content/home/", function(r) {
            
@@ -184,8 +189,8 @@ var app = {
     var fi = di.split(".");
     var ff= df.split(".");
 
-    var startDate = new Date(fi[2],fi[1],fi[0],10,00,0,0,0); 
-    var endDate = new Date(ff[2],ff[1],ff[0],18,00,0,0,0);
+    var startDate = new Date(fi[2],fi[1],fi[0],0,0,0,0,0); 
+    var endDate = new Date(ff[2],ff[1],ff[0],0,0,0,0,0);
 
 
         window.plugins.calendar.createEventInteractively(t, e, n, startDate, endDate, app.successCalendar, app.errorCalendar)
@@ -275,7 +280,7 @@ $(document).scroll(function(e){
 });
 
 
-$('body').click( "tap", function tapHandler( e ){  
+$('body').click( "tap", function tapHandler( i ){  
 	console.log($(e.target).attr('id'));  
 	var mmain = $("#main_menu");
 	
@@ -286,5 +291,4 @@ $('body').click( "tap", function tapHandler( e ){
 	}
 	}
 );
-
 

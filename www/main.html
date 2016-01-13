@@ -35,7 +35,7 @@
 	<script id="home_screen_template" type="text/x-handlebars-template">
 		
 	<section class="home_content content clearfix">
-		<div class="cycle-slideshow">
+		<div class="home_slider" data-cycle-swipe=true data-cycle-swipe-fx=scrollHorz>
 		{{#if lang_en}}
 			<img src="{{slider-1}}" class="full_bg">			
 			<img src="{{slider-2}}" class="full_bg">			
@@ -60,7 +60,7 @@
 	</script>
 	<script type="text/javascript">
 		app.render_home_content();
-		$('.cycle-slideshow').cycle({
+		$('.home_slider').cycle({
 		    speed: 600,
 		    manualSpeed: 100,
 		    swipe: true,

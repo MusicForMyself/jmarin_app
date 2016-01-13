@@ -30,42 +30,40 @@
 		/* Initialize app object and perform initial login check */
 		window.is_home = true;
 		app.initialize();
+		
+
 	</script>
 	<script type="text/javascript" src="cordova.js"></script>
 	<script id="home_screen_template" type="text/x-handlebars-template">
 		
 	<section class="home_content content clearfix">
-		<div class="cycle-slideshow">
-		{{#if lang_en}}
-			<img src="{{slider-1}}" class="full_bg">			
-			<img src="{{slider-2}}" class="full_bg">			
-			<img src="{{slider-3}}" class="full_bg">			
-		{{/if}}
-		{{#if lang_es}}
-			<img src="{{slider-1}}" class="full_bg">			
-			<img src="{{slider-2}}" class="full_bg">			
-			<img src="{{slider-3}}" class="full_bg">			
-		{{/if}}
-		{{#if nolang}}
-			<h1 class="logo sprited"><span class="handstand sprited"></span></h1>
-			<ul class="lang_select">
-				<li><a href="main.html?lang=en">ENG</a></li>
-				<li><span class="click sprited"></span></li>
-				<li><a href="main.html?lang=es">ESP</a></li>
-			</ul>
-		{{/if}}
-		</div>
+		<div class="swiper-container">
+	        <div class="swiper-wrapper">
+			{{#if lang_en}}
+				<div class="swiper-slide"><img src="{{slider-1}}" class="full_bg"></div>			
+				<div class="swiper-slide"><img src="{{slider-2}}" class="full_bg"></div>			
+				<div class="swiper-slide"><img src="{{slider-3}}" class="full_bg"></div>			
+			{{/if}}
+			{{#if lang_es}}
+				<div class="swiper-slide"><img src="{{slider-1}}" class="full_bg"></div>		
+				<div class="swiper-slide"><img src="{{slider-2}}" class="full_bg"></div>			
+				<div class="swiper-slide"><img src="{{slider-3}}" class="full_bg"></div>			
+			{{/if}}
+			{{#if nolang}}
+				<h1 class="logo sprited"><span class="handstand sprited"></span></h1>
+				<ul class="lang_select">
+					<li><a href="main.html?lang=en">ENG</a></li>
+					<li><span class="click sprited"></span></li>
+					<li><a href="main.html?lang=es">ESP</a></li>
+				</ul>
+			{{/if}}
+			</div>
+		</div>	
 	</section>
 
 	</script>
 	<script type="text/javascript">
 		app.render_home_content();
-		$('.cycle-slideshow').cycle({
-		    speed: 600,
-		    manualSpeed: 100,
-		    swipe: true,
-		    fx: "scrollHorz"
-		});
-
+		var swiper = new Swiper('.swiper-container');
 	</script>
 </html>
