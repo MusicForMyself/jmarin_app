@@ -239,8 +239,6 @@ jQuery(document).ready(function(e) {
         e("#gallery_container").fadeIn("fast"), e("#gallery_swap").prop("src", n.data("url")), e("#insert_comment").text(n.data("comment")), e("#insert_description").text(n.data("description"))
     }), e("body").on("click", ".close", function() {
         e(this).parent().fadeOut("fast")
-    }), e("body").click("uploadFileStorage", function() {
-        app.upload_file_choice()
     })
 });
 
@@ -257,9 +255,8 @@ $(document).scroll(function(e) {
 });
 
 $('body').click("tap", function tapHandler(e) {
-    console.log($(e.target).attr('id'));
+   
     var mmain = $("#main_menu");
-
     if (!mmain.hasClass('open') && $(e.target).attr('id') != 'menu_trigger') {
         $('#main_menu').removeClass('open');
         $('#main_menu').fadeOut('fast');
@@ -280,10 +277,8 @@ $(document).scroll(function(e){
 });
 
 
-$('body').click( "tap", function tapHandler( i ){  
-	console.log($(e.target).attr('id'));  
+$('body').click( "tap", function tapHandler( e ){  
 	var mmain = $("#main_menu");
-	
 	if(!mmain.hasClass('open') && $(e.target).attr('id') != 'menu_trigger') {
 		$('#main_menu').removeClass('open');
 		$('#main_menu').fadeOut('fast');

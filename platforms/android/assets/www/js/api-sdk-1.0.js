@@ -390,18 +390,20 @@ function requestHandlerAPI(){
 
 		this.transfer_win = function (r) {
 			app.toast("Se ha publicado una imagen");
-			window.location.reload('marin_hashtag.html');
+			app.ls.removeItem("file");
+			window.location.href('marin_hashtag.html');
 		};
 
 		this.profile_transfer_win = function (r) {
-									app.toast("Imagen de perfil modificada");
-									window.location.reload(true);
-								};
+			app.toast("Imagen de perfil modificada");
+			window.location.href('marin_hashtag.html');
+		};
 		this.transfer_fail = function (error) {
 								console.log(error);
 								alert("An error has occurred: Code = " + error.code);
 								console.log("upload error source " + error.source);
 								console.log("upload error target " + error.target);
+								window.location.href('marin_hashtag.html');
 							};
 		/*
 		 * Initialize File transfer
@@ -417,7 +419,7 @@ function requestHandlerAPI(){
 
 			var params = {};
 				params.client = "app";
-				params.comment = "this is not a comment";
+				params.comment =  document.getElementById("txtcomment").value;;
 
 			this.transfer_options.params = params;
 
