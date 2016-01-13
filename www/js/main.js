@@ -237,7 +237,7 @@ jQuery(document).ready(function(e) {
         app.get_file_from_device("hashtag", "camera")
     }), e("body").on("click", ".trigger_gallery", function() {
         var n = e(this);
-        e("#gallery_container").fadeIn("fast"), e("#gallery_swap").prop("src", n.data("url")), e("#insert_description").text(n.data("description"))
+        e("#gallery_container").fadeIn("fast");
     }), e("body").on("click", ".close", function() {
         e(this).parent().fadeOut("fast")
     }), e('.home_slider').cycle({
