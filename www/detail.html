@@ -57,7 +57,7 @@
 				<section class="description">{{{post_content}}}</section>
 				<section id="gallery_thumb_container" class="gallery_thumb_container clearfix">
 					{{#gallery.pool}}
-						<article data-url="{{url}}" data-comment="{{comment}}" data-description="{{description}}" class="trigger_gallery each_gallerythumb_wrapper rounded">
+						<article data-url="{{url}}" data-slider="{{gallery.pool}}" data-comment="{{comment}}" data-description="{{description}}" class="trigger_gallery each_gallerythumb_wrapper rounded">
 							<img src="{{url}}">
 						</article>
 					{{/gallery.pool}}
@@ -67,14 +67,27 @@
 		<section id="gallery_container"  class="gallery_container insert_here">
 			<a class="close">x</a>
 			<h2 class="logo sprited"></h2>
-			<img src="" id="gallery_swap" class="gallery_swap_image">
-			<h3 id="insert_comment"></h3>
-			<span id="insert_description"></span>
+			<div class="feed_slider">
+				{{#gallery.pool}}
+					<img src="{{url}}" id="gallery_swap" class="gallery_swap_image">
+					<h3 id="insert_comment">{{comment}}</h3>
+					<span id="insert_description">{{description}}</span>
+				{{/gallery.pool}}	
+			<div>
 		</section>
 	</script>
 	<script type="text/javascript">
 		var GET = app.getUrlVars();
 		if(GET.expo_id && GET.expo_id != '')
 			app.get_expo_detail(GET.expo_id);
+
+		$('.feed_slider').cycle({
+	        log:true,
+	        speed: 1000,
+	        loader: true,
+	        manualSpeed: 100,
+	        swipe: true,
+	        fx: "scrollHorz"
+	    }); 
 	</script>
 </html>

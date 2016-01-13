@@ -22,7 +22,6 @@
 	<!-- Load app's main scripts and styles -->
 	<!-- Templates -->
 	<script src="js/handlebars-runtime.js"></script>
-	
 	<script src="js/api-sdk-1.0.js"></script>
 	<script src="js/main.js"></script>
 	<script src="js/plugins.min.js"></script>
@@ -35,11 +34,11 @@
 	<script id="home_screen_template" type="text/x-handlebars-template">
 		
 	<section class="home_content content clearfix">
-		<div class="home_slider" data-cycle-swipe=true data-cycle-swipe-fx=scrollHorz>
+		<div class="home_slider" data-cycle-swipe=true data-cycle-swipe-fx=scrollHorz data-cycle-timeout=0 data-cycle-manual-speed="200">
 		{{#if lang_en}}
 			<img src="{{slider-1}}" class="full_bg">			
 			<img src="{{slider-2}}" class="full_bg">			
-			<img src="{{slider-3}}" class="full_bg">			
+			<img src="{{slider-3}}" class="full_bg">
 		{{/if}}
 		{{#if lang_es}}
 			<img src="{{slider-1}}" class="full_bg">			
@@ -60,12 +59,6 @@
 	</script>
 	<script type="text/javascript">
 		app.render_home_content();
-		$('.home_slider').cycle({
-		    speed: 600,
-		    manualSpeed: 100,
-		    swipe: true,
-		    fx: "scrollHorz"
-		});
-
+		
 	</script>
 </html>
