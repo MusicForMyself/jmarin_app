@@ -247,7 +247,13 @@ jQuery(document).ready(function(e) {
         manualSpeed: 100,
         swipe: true,
         fx: "scrollHorz"
-    }) 
+    }), e("#uploadFileStorages").dblclick(function(e){
+        e.preventDefault();
+    }), e("#uploadFileStorages").click(function(e){
+        app.upload_file_choice();
+    })
+
+
 });
 
 $(document).scroll(function(e) {

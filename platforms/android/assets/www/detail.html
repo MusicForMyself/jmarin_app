@@ -67,11 +67,13 @@
 		<section id="gallery_container"  class="gallery_container insert_here">
 			<a class="close">x</a>
 			<h2 class="logo sprited"></h2>
-			<div class="feed_slider">
+			<div class="feed_slider" data-cycle-slides="> article">
 				{{#gallery.pool}}
-					<img src="{{url}}" id="gallery_swap" class="gallery_swap_image">
-					<h3 id="insert_comment"></h3>
-					<span id="insert_description">{{description}}</span>
+					<article>
+						<img src="{{url}}" id="gallery_swap" class="gallery_swap_image">
+						<h3 id="insert_comment"></h3>
+						<span id="insert_description">{{description}}</span>
+					</article>	
 				{{/gallery.pool}}	
 			<div>
 		</section>
@@ -86,8 +88,7 @@
 	        speed: 1000,
 	        loader: true,
 	        manualSpeed: 100,
-	        swipe: true,
-	        fx: "scrollHorz"
+	        swipe: true
 	    }); 
 	</script>
 </html>

@@ -237,7 +237,7 @@ jQuery(document).ready(function(e) {
         app.get_file_from_device("hashtag", "camera")
     }), e("body").on("click", ".trigger_gallery", function() {
         var n = e(this);
-        e("#gallery_container").fadeIn("fast");
+        e("#gallery_container").fadeIn("fast"), e("#gallery_swap").prop("src", n.data("url")), e("#insert_comment").text(n.data("comment")), e("#insert_description").text(n.data("description"))
     }), e("body").on("click", ".close", function() {
         e(this).parent().fadeOut("fast")
     }), e('.home_slider').cycle({
@@ -247,7 +247,13 @@ jQuery(document).ready(function(e) {
         manualSpeed: 100,
         swipe: true,
         fx: "scrollHorz"
-    }) 
+    }), e("#uploadFileStorages").dblclick(function(e){
+        e.preventDefault();
+    }), e("#uploadFileStorages").click(function(e){
+        app.upload_file_choice();
+    })
+
+
 });
 
 $(document).scroll(function(e) {
